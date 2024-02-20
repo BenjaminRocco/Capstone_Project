@@ -1,4 +1,4 @@
-# Capstone_Project
+# Capstone Project
 General Assembly Capstone Project
 
 1. Problem Statement
