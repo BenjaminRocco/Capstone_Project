@@ -7,7 +7,7 @@ General Assembly Capstone Project
 - Interested parties in this research include political party affiliates, media outlets, psychologistics and sociologists, and others intrigued by the phenomenon of social media influencing societal thought processes. 
 
 2. Dataset(s)
-- Data will consist of social media posts from `X` and `Facebook` from public pages (major media stations and other public figures).
+- Data will consist of media headlines from `NYT` and other news outlets from public pages (major media stations and other public figures).
 - These will be imported and converted to `Pandas` DataFrames and edited for content. 
 - Cleaning and transformation steps will include utilizing Regular Expressions to make the data confirm to standards outlined in greater detail within the project notebook, as well as censoring foul language from strings. 
 - The results of this analysis will serve as input for basic `NLP` models prior to serving as input to more advanced neural network models.
@@ -25,4 +25,4 @@ General Assembly Capstone Project
   - Text data must be cleaned, parsed, and transformed into vectors.
 
 4. Resources / References
-- `API` Documentation from X and Facebook
+- `API` Documentation from `NYT`
