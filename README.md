@@ -2,18 +2,18 @@
 General Assembly Capstone Project
 
 1. Problem Statement
-- How can prejudice and bias be identified from political social media posts by utilizing convolutional neural networks with natural language processing methods? 
-- Efficacy will be evaluated based on performance and error metrics and recommendations and guidance will be offered. 
-- Interested parties in this research include political party affiliates, media outlets, psychologistics and sociologists, and others intrigued by the phenomenon of social media influencing societal thought processes. 
+- How can bias be identified from political news posts by utilizing convolutional neural networks with natural language processing methods? 
+- Efficacy will be evaluated based on performance, error metrics, sentiment analysis and recommendations and guidance will be offered. 
+- Interested parties in this research include political party affiliates, media outlets, psychologistics and sociologists, and others intrigued by the phenomenon of media influence upon societal thought processes. 
 
 2. Dataset(s)
-- Data will consist of media headlines from `NYT` and other news outlets from public pages (major media stations and other public figures).
+- Data will consist of media headlines from `NYT`.
 - These will be imported and converted to `Pandas` DataFrames and edited for content. 
 - Cleaning and transformation steps will include utilizing Regular Expressions to make the data confirm to standards outlined in greater detail within the project notebook, as well as censoring foul language from strings. 
 - The results of this analysis will serve as input for basic `NLP` models prior to serving as input to more advanced neural network models.
 
 3. Modeling
-- Bias and Prejudice scores typical of these modeling projects will be the target variables (multi-classification, as there will be varying scales for each of these two variables).
+- Bias scores typical of these modeling projects will be the target variables (multi-classification, as there will be varying scales for each of these two variables).
 - `NLP` classification models.
   - Unsupervised
 - `NN` classification models.
