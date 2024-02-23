@@ -22,6 +22,7 @@ General Assembly Capstone Project
   
 - Bias scores typical of these modeling projects will be utilized to evaluate the abstracts and headlines for the `Opinion` articles.
 
+4. Noteworthy Observations
 - The benefits of `NLP` models are that they are not computationally expensive compared with their `NN` counterparts. The drawbacks are that they might not contain as many insights as the latter more complex models.
 - The benefits of `NN` models are that they have more hyperparameters and customizability compared with their `NLP` counterparts. The drawbacks are that they may be limited by resources such as hardware and computation times necessary to run optimization steps exhaustively for optimal performance. 
 - Assumptions to confirm / requisite steps to take with independent variables for models:
