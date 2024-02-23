@@ -13,6 +13,13 @@ General Assembly Capstone Project
 - The results of this analysis will serve as input for basic `NLP` models prior to serving as input to more advanced neural network models.
 
 3. Modeling
+
+- First, a binary classification model will identify whether or not the article came from an `Opinion` piece or other (1 for `Opinion` and 0 for `other`, all other section names).
+
+- Input features for classification model: Abstract and headline contents.
+- Output features for classification model: (1 for `Opinion` and 0 for `other`, all other section names).
+- Next, once this model is adequately hyperparameter-tuned sentiment analysis will be conducted on the actual `Opinion` articles (their abstracts and headlines).
+  
 - Bias scores typical of these modeling projects will be the target variables (multi-classification, as there will be varying scales for each of these two variables).
 - `NLP` classification models.
   - Unsupervised
