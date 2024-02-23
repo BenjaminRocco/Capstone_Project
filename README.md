@@ -20,11 +20,8 @@ General Assembly Capstone Project
 - Output features for classification model: (1 for `Opinion` and 0 for `other`, all other section names).
 - Next, once this model is adequately hyperparameter-tuned sentiment analysis will be conducted on the actual `Opinion` articles (their abstracts and headlines).
   
-- Bias scores typical of these modeling projects will be the target variables (multi-classification, as there will be varying scales for each of these two variables).
-- `NLP` classification models.
-  - Unsupervised
-- `NN` classification models.
-  -  Supervised
+- Bias scores typical of these modeling projects will be utilized to evaluate the abstracts and headlines for the `Opinion` articles.
+
 - The author anticipates `NN` will perform exceptionally well compared with the basic `NLP` models. 
 - The benefits of `NLP` models are that they are not computationally expensive compared with their `NN` counterparts. The drawbacks are that they might not contain as many insights as the latter more complex models.
 - The benefits of `NN` models are that they have more hyperparameters and customizability compared with their `NLP` counterparts. The drawbacks are that they may be limited by resources such as hardware and computation times necessary to run optimization steps exhaustively for optimal performance. 
