@@ -28,5 +28,6 @@ General Assembly Capstone Project
 - Assumptions to confirm / requisite steps to take with independent variables for models:
   - Text data must be cleaned, parsed, and transformed into vectors.
 
-4. Resources / References
+5. Resources / References
 - `API` Documentation from `NYT`
+- Code from webscraping adapted from fellow coursemate's group project, with their permission this code was included in the pipeline for this project. 
