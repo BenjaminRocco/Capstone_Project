@@ -14,13 +14,19 @@ General Assembly Capstone Project
 
 3. Modeling
 
+Part I.
 - First, a binary classification model will identify whether or not the article came from an `Opinion` piece or other (1 for `Opinion` and 0 for `other`, all other section names).
 
 - Input features for classification model: Abstract and headline contents.
 - Output features for classification model: (1 for `Opinion` and 0 for `other`, all other section names).
-- Next, once this model is adequately hyperparameter-tuned sentiment analysis will be conducted on the actual `Opinion` articles (their abstracts and headlines).
   
-- Bias scores typical of these modeling projects will be utilized to evaluate the abstracts and headlines for the `Opinion` articles.
+  Part II. 
+- Once this model is adequately hyperparameter-tuned sentiment analysis will be conducted on the actual `Opinion` articles (their abstracts and headlines). 
+  
+- Bias scores typical of these modeling projects will be utilized to evaluate the abstracts and headlines for the `Opinion` articles (Cohen Kappa Score generated with Snorkel labeling functions)
+  
+  Part III.
+- Neural Network portion. Model with LSTM and compare with professional analyzers for performance
 
 4. Noteworthy Observations
 - The benefits of `NLP` models are that they are not computationally expensive compared with their `NN` counterparts. The drawbacks are that they might not contain as many insights as the latter more complex models.
@@ -30,4 +36,5 @@ General Assembly Capstone Project
 
 5. Resources / References
 - `API` Documentation from `NYT`
-- Code from webscraping adapted from fellow coursemate's group project, with their permission this code was included in the pipeline for this project. 
+- Code from webscraping adapted from fellow coursemate's group project, with their permission this code was included in the pipeline for this project.
+- Snorkel documentation for Cohen Kappa Score labeling 
