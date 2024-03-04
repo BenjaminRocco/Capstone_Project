@@ -1,1 +1,0 @@
-# Rationale for Separating Articles by `Opinion` section versus non-`Opinion` section
