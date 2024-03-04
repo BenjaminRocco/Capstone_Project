@@ -8,6 +8,10 @@ from textblob import TextBlob
 import re
 import os #
 
+import nltk
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from snorkel.labeling import labeling_function
 from textblob import TextBlob
@@ -16,12 +20,11 @@ from snorkel.labeling import PandasLFApplier
 
 import random
 
-import nltk
 from nltk.corpus import wordnet as wn
+nltk.download('stopwords')
+nltk.download('punkt')
 
 from snorkel.augmentation import transformation_function
-
-# nltk.download("wordnet", quiet=True)
 
 from snorkel.augmentation import ApplyOnePolicy, PandasTFApplier
 
@@ -117,14 +120,15 @@ def combined_binary_bias_score(x):
 
     return normalized_score
 
-# def predict_class(user_input): # Old always returns output 0
+# def predict_class(user_input):
 #     # Tokenize and pad the input sequence
+    
 #     tokenizer.fit_on_texts([user_input])
 #     sequence = tokenizer.texts_to_sequences([user_input])
 #     padded_sequence = pad_sequences(sequence, maxlen=max_length)
 
 #     # Make a prediction using the neural net model
-#     model_score = model.predict(padded_sequence)[0][0]
+#     model_score = np.argmax(model.predict(padded_sequence))/10
 #     st.write(f"Neural Net Model Score: {model_score:.2f}")
 
 #     # Call the previous function to display outcomes of labeling functions
@@ -132,28 +136,33 @@ def combined_binary_bias_score(x):
 #     lf_outcomes(user_input, model_score)
 
 def predict_class(user_input):
+    # 1. Remove non-letters.
+    user_input = re.sub("[^a-zA-Z]", " ", user_input)
+    
+    # 2. Convert to lower case, split into individual words.
+    user_input = user_input.lower().split()
     # Tokenize and pad the input sequence
+
     tokenizer.fit_on_texts([user_input])
     sequence = tokenizer.texts_to_sequences([user_input])
     padded_sequence = pad_sequences(sequence, maxlen=max_length)
 
-    # Make a prediction using the neural net model
-    model_score = np.argmax(model.predict(padded_sequence))
-    st.write(f"Neural Net Model Score: {model_score:.2f}")
+    # Remove stopwords
+    stop_words = set(stopwords.words('english'))
+    word_tokens = word_tokenize(" ".join(user_input))
+    filtered_tokens = [word for word in word_tokens if word.lower() not in stop_words]
 
-    # Get the predicted label
-    pred_label = get_pred_label(model_score)
+    # Print the phrase with stopwords removed
+    filtered_phrase = " ".join(filtered_tokens)
+    st.write(f"Phrase with stopwords removed: {filtered_phrase}")
+
+    # Make a prediction using the neural net model
+    model_score = np.argmax(model.predict(padded_sequence))/10
+    st.write(f"Neural Net Model Score: {model_score:.2f}")
 
     # Call the previous function to display outcomes of labeling functions
     st.subheader("Labeling Function Outcomes:")
-    lf_outcomes(user_input, model_score, pred_label)
-
-# def get_pred_label(model_score):
-#     # Assuming your model outputs a probability for each class
-#     pred_class = np.argmax(model_score)
-#     pred_label = le.inverse_transform(pred_class)
-
-#     return pred_label
+    lf_outcomes(" ".join(filtered_tokens), model_score)
 
 # Define a function to display outcomes of labeling functions
 @st.cache_resource()
