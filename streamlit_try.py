@@ -8,6 +8,7 @@ from textblob import TextBlob
 import re
 import os #
 
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from snorkel.labeling import labeling_function
 from textblob import TextBlob
 from snorkel.labeling.model import LabelModel
@@ -43,6 +44,8 @@ tokenizer = Tokenizer(num_words=vocab_size, oov_token=oov_token)
 misleading_bias_terms = ['trump', 'u', 'america', 'american', 'new', 'people', 'states', 'president', 'many', 'states', 'united', 'americans', 'one']
 bias_words = ['fake', 'news', 'fale', 'biased', 'unreliable', 'propaganda', 'misleading', 'partisan', 'manipulative']
 subj_words = ['feel', 'feels', 'thinks', 'thought', 'thoughts', 'opinion', 'bias', 'think','felt', 'believe', 'believed','believes','believer']
+
+le = LabelEncoder()
 
 @labeling_function()
 def lf_keyword_my_binary(x):
@@ -114,6 +117,20 @@ def combined_binary_bias_score(x):
 
     return normalized_score
 
+# def predict_class(user_input): # Old always returns output 0
+#     # Tokenize and pad the input sequence
+#     tokenizer.fit_on_texts([user_input])
+#     sequence = tokenizer.texts_to_sequences([user_input])
+#     padded_sequence = pad_sequences(sequence, maxlen=max_length)
+
+#     # Make a prediction using the neural net model
+#     model_score = model.predict(padded_sequence)[0][0]
+#     st.write(f"Neural Net Model Score: {model_score:.2f}")
+
+#     # Call the previous function to display outcomes of labeling functions
+#     st.subheader("Labeling Function Outcomes:")
+#     lf_outcomes(user_input, model_score)
+
 def predict_class(user_input):
     # Tokenize and pad the input sequence
     tokenizer.fit_on_texts([user_input])
@@ -121,12 +138,22 @@ def predict_class(user_input):
     padded_sequence = pad_sequences(sequence, maxlen=max_length)
 
     # Make a prediction using the neural net model
-    model_score = model.predict(padded_sequence)[0][0]
+    model_score = np.argmax(model.predict(padded_sequence))
     st.write(f"Neural Net Model Score: {model_score:.2f}")
+
+    # Get the predicted label
+    pred_label = get_pred_label(model_score)
 
     # Call the previous function to display outcomes of labeling functions
     st.subheader("Labeling Function Outcomes:")
-    lf_outcomes(user_input, model_score)
+    lf_outcomes(user_input, model_score, pred_label)
+
+# def get_pred_label(model_score):
+#     # Assuming your model outputs a probability for each class
+#     pred_class = np.argmax(model_score)
+#     pred_label = le.inverse_transform(pred_class)
+
+#     return pred_label
 
 # Define a function to display outcomes of labeling functions
 @st.cache_resource()
