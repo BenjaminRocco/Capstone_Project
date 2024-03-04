@@ -7,7 +7,22 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from textblob import TextBlob
 import re
 import os #
+
+from snorkel.labeling import labeling_function
 from textblob import TextBlob
+from snorkel.labeling.model import LabelModel
+from snorkel.labeling import PandasLFApplier
+
+import random
+
+import nltk
+from nltk.corpus import wordnet as wn
+
+from snorkel.augmentation import transformation_function
+
+# nltk.download("wordnet", quiet=True)
+
+from snorkel.augmentation import ApplyOnePolicy, PandasTFApplier
 
 # Load the pre-trained model from the .h5 file
 # model_path = "/kaggle/input/model_11_72test/keras/model_11/1/model_11_72test.keras"
@@ -29,31 +44,31 @@ misleading_bias_terms = ['trump', 'u', 'america', 'american', 'new', 'people', '
 bias_words = ['fake', 'news', 'fale', 'biased', 'unreliable', 'propaganda', 'misleading', 'partisan', 'manipulative']
 subj_words = ['feel', 'feels', 'thinks', 'thought', 'thoughts', 'opinion', 'bias', 'think','felt', 'believe', 'believed','believes','believer']
 
-# @labeling_function()
+@labeling_function()
 def lf_keyword_my_binary(x):
     """Return 1 if any of the misleading_bias_terms is present, else return 0."""
     presence = any(term in str(x).lower() for term in misleading_bias_terms)
     return 1 if presence else 0
 
-# @labeling_function()
+@labeling_function()
 def lf_regex_fake_news_binary(x):
     """Return 1 if any of the bias_words is present, else return 0."""
     presence = any(re.search(fr"\b{word}\b", str(x), flags=re.I) is not None for word in bias_words)
     return 1 if presence else 0
 
-# @labeling_function()
+@labeling_function()
 def lf_regex_subjective_binary(x):
     """Return 1 if any of the subj_words is present, else return 0."""
     presence = any(re.search(fr"\b{word}\b", str(x), flags=re.I) is not None for word in subj_words)
     return 1 if presence else 0
 
-# @labeling_function()
+@labeling_function()
 def lf_long_combined_text_binary(text_list):
     """Return 1 if the combined length is greater than 376, else return 0."""
     length = len(" ".join(str(text_list)).split())
     return 1 if length > 376 else 0
 
-# @labeling_function()
+@labeling_function()
 def lf_textblob_polarity_binary(x):
     """
     We use a third-party sentiment classification model, TextBlob.
@@ -63,7 +78,7 @@ def lf_textblob_polarity_binary(x):
     polarity = TextBlob(str(x)).sentiment.polarity
     return 1 if polarity < 0 else 0
 
-# @labeling_function()
+@labeling_function()
 def lf_textblob_subjectivity_binary(x):
     """
     We use a third-party sentiment classification model, TextBlob.
@@ -111,11 +126,11 @@ def predict_class(user_input):
 
     # Call the previous function to display outcomes of labeling functions
     st.subheader("Labeling Function Outcomes:")
-    lf_outcomes(user_input)
+    lf_outcomes(user_input, model_score)
 
 # Define a function to display outcomes of labeling functions
-@st.cache
-def lf_outcomes(user_input):
+@st.cache_resource()
+def lf_outcomes(user_input, model_score):
     # Labeling Function 1
     lf1_outcome = lf_keyword_my_binary(user_input)
     st.write(f"LF 1 - Keyword My Binary: Outcome - {lf1_outcome}, Score - {lf1_outcome * weight_lf_keyword_my_binary:.2f}")
