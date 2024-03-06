@@ -23,12 +23,12 @@ model_path = "model_11_72test.h5"
 model = tf.keras.models.load_model(model_path)
 
 # Load RoBERTa for sentiment analysis
-# roberta_sentiment_analysis = pipeline("sentiment-analysis", model="roberta-base")
+roberta_sentiment_analysis = pipeline("sentiment-analysis", model="roberta-base")
 
 # Load VADER sentiment analyzer
-nltk.download('vader_lexicon')
-from nltk.sentiment import SentimentIntensityAnalyzer
-vader_analyzer = SentimentIntensityAnalyzer()
+# nltk.download('vader_lexicon')
+# from nltk.sentiment import SentimentIntensityAnalyzer
+# vader_analyzer = SentimentIntensityAnalyzer()
 
 
 # Define variables
@@ -163,12 +163,12 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     st.write(f"Neural Net Model Score: {model_score:.2f}")
 
     # Use RoBERTa for sentiment analysis
-    # roberta_score = roberta_sentiment_analysis(user_input)[0]['score']
-    # st.write(f"RoBERTa Sentiment Score: {roberta_score:.2f}")
+    roberta_score = roberta_sentiment_analysis(user_input)[0]['score']
+    st.write(f"RoBERTa Sentiment Score: {roberta_score:.2f}")
 
     # Use VADER sentiment analyzer
-    vader_score = vader_analyzer.polarity_scores(user_input)['compound']
-    st.write(f"VADER Sentiment Score: {vader_score:.2f}")
+    # vader_score = vader_analyzer.polarity_scores(user_input)['compound']
+    # st.write(f"VADER Sentiment Score: {vader_score:.2f}")
 
     # Call the previous function to display outcomes of labeling functions
     st.subheader("Labeling Function Outcomes:")
@@ -177,18 +177,18 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     combined_score = combined_binary_bias_score(user_input)
     pred_sent_score = combined_score + model_score
 
-    if vader_score < 0:
+    if roberta_score < 0:
         pred_sent_score *= -1
-    elif vader_score > 0:
+    elif roberta_score > 0:
         pred_sent_score *= 1
 
 
     # Display sentiment scores if checkbox is selected
     if show_sentiment_scores:
         st.subheader("Sentiment Scores:")
-        # st.write("RoBERTa Sentiment Score:", roberta_score)
+        st.write("RoBERTa Sentiment Score:", roberta_score)
         st.write("Predicted Sentiment Score:", pred_sent_score)
-        st.write("VADER Sentiment Score:", vader_score)
+        # st.write("VADER Sentiment Score:", vader_score)
 
 # Define a function to display outcomes of labeling functions
 @st.cache_resource()
