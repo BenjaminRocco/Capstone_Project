@@ -40,3 +40,4 @@ Part I.
 - Snorkel documentation for Cohen Kappa Score labeling: https://www.snorkel.org
 - Pew Center Article on Bias: https://www.pewresearch.org/internet/2017/10/19/the-future-of-truth-and-misinformation-online
 - VADER Documentation: https://vadersentiment.readthedocs.io
+- Kaggle GPU Documentation: https://www.kaggle.com/code/dansbecker/running-kaggle-kernels-with-a-gpu
