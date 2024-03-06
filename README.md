@@ -1,26 +1,24 @@
 # Capstone Project
-General Assembly Capstone Project
+## Table Of Contents
 
-### Table Of Contents
-
-#### Overview
+### Overview
 `README.md`
 
-#### Code
+### Code
 `part_01`
 `part_02`
 `part_03`
 
-#### Data
+### Data
 `Data`
 
-#### Documents 
+### Documents 
 `Documentation`
 
-#### streamlit_script.py
+### streamlit_script.py
 Streamlit application script
 
-#### model_11%%%
+### model_11%%%
 Long Short Term Memory (LSTM) Neural Network (NN) models
 
 ## 1. Problem Statement
