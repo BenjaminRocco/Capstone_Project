@@ -218,18 +218,18 @@ def lf_outcomes(user_input, model_score):
     st.write(f"LF 6 - Textblob Subjective Binary: Outcome - {lf6_outcome}, Score - {lf6_outcome * weight_lf_textblob_subjectivity_binary:.2f}")
 
     # Labeling Function 7
-    lf7_outcome = lf_past_tense_keywords_binary(user_input)
-    st.write(f"LF 7 - Past Tense Keywords Binary: Outcome - {lf7_outcome}, Score - {lf7_outcome * weight_lf_past_tense_keywords_binary:.2f}")
+    # lf7_outcome = lf_past_tense_keywords_binary(user_input)
+    # st.write(f"LF 7 - Past Tense Keywords Binary: Outcome - {lf7_outcome}, Score - {lf7_outcome * weight_lf_past_tense_keywords_binary:.2f}")
 
 
-    # Labeling Function 8
-    lf8_outcome = lf_present_tense_keywords_binary(user_input)
-    st.write(f"LF 8 - Present Tense Keywords Binary: Outcome - {lf8_outcome}, Score - {lf8_outcome * weight_lf_present_tense_keywords_binary:.2f}")
+    # # Labeling Function 8
+    # lf8_outcome = lf_present_tense_keywords_binary(user_input)
+    # st.write(f"LF 8 - Present Tense Keywords Binary: Outcome - {lf8_outcome}, Score - {lf8_outcome * weight_lf_present_tense_keywords_binary:.2f}")
 
 
-    # Labeling Function 9
-    lf9_outcome = lf_active_voice_keywords_binary(user_input)
-    st.write(f"LF 9 - Active Voice Keywords Binary: Outcome - {lf9_outcome}, Score - {lf9_outcome * weight_lf_active_voice_keywords_binary:.2f}")
+    # # Labeling Function 9
+    # lf9_outcome = lf_active_voice_keywords_binary(user_input)
+    # st.write(f"LF 9 - Active Voice Keywords Binary: Outcome - {lf9_outcome}, Score - {lf9_outcome * weight_lf_active_voice_keywords_binary:.2f}")
 
 
     # Combined Binary Bias Score
