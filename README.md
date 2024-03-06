@@ -35,6 +35,8 @@ Part I.
   - Text data must be cleaned, parsed, and transformed into vectors.
 
 5. Resources / References
-- `API` Documentation from `NYT`
-- Code from webscraping adapted from fellow coursemate's group project, with their permission this code was included in the pipeline for this project.
-- Snorkel documentation for Cohen Kappa Score labeling 
+- `API` Documentation from `NYT`: https://developer.nytimes.com/apis
+- Code for webscraping adapted from fellow coursemate's group project, with their permission this code was included in the pipeline for this project.
+- Snorkel documentation for Cohen Kappa Score labeling: https://www.snorkel.org
+- Pew Center Article on Bias: https://www.pewresearch.org/internet/2017/10/19/the-future-of-truth-and-misinformation-online
+- VADER Documentation: https://vadersentiment.readthedocs.io
