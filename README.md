@@ -61,3 +61,5 @@ Part I.
 - Pew Center Article on Bias: https://www.pewresearch.org/internet/2017/10/19/the-future-of-truth-and-misinformation-online
 - VADER Documentation: https://vadersentiment.readthedocs.io
 - Kaggle GPU Documentation: https://www.kaggle.com/code/dansbecker/running-kaggle-kernels-with-a-gpu
+- CBOW/Skip Gram: https://towardsdatascience.com/understanding-feature-engineering-part-4-deep-learning-methods-for-text-data-96c44370bbfa
+

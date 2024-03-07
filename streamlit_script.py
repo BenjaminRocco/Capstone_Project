@@ -69,7 +69,7 @@ def lf_regex_subjective_binary(x):
 def lf_long_combined_text_binary(text_list):
     """Return 1 if the combined length is greater than 376, else return 0."""
     length = len(" ".join(str(text_list)).split())
-    return 1 if length > 376 else 0
+    return 1 if length > 376 else 0 # Try 133 
 
 @labeling_function()
 def lf_textblob_polarity_binary(x):
@@ -88,7 +88,14 @@ def lf_textblob_subjectivity_binary(x):
 
     We map the subjectivity to binary classification: 1 if high subjectivity, 0 otherwise.
     """
+    # Check if either of the two phrases occurs in the text
+    if "see full results maps" in str(x).lower() or "see latest charts maps" in str(x).lower():
+        return 0
+    
+    # Calculate subjectivity using TextBlob
     subjectivity = TextBlob(str(x)).sentiment.subjectivity
+    
+    # Return 1 if high subjectivity, 0 otherwise
     return 1 if subjectivity > 0.5 else 0
 
 @labeling_function()
