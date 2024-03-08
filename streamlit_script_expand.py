@@ -19,21 +19,13 @@ from nltk.corpus import wordnet as wn
 from nltk.sentiment import SentimentIntensityAnalyzer
 nltk.download('vader_lexicon')
 from transformers import pipeline
-from spellchecker import SpellChecker
-
-# Define spellchecker
-spell = SpellChecker()
- 
-
 
 # Load the pre-trained model from the .h5 file
 model_path = "model_11_72test.h5" # Best Performing - Currently Set
-model_path2 = "model_11_neg_words.h5" # new try after edits / sentiment scores not as closely aligning to Vader as best performing
 model = tf.keras.models.load_model(model_path)
 
 # Load VADER sentiment analyzer
 vader_analyzer = SentimentIntensityAnalyzer()
-
 
 # Define variables
 vocab_size = 23100

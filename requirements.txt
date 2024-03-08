@@ -1,0 +1,9 @@
+streamlit
+tensorflow
+numpy
+textblob
+nltk
+scikit-learn
+snorkel
+scipy
+transformers
