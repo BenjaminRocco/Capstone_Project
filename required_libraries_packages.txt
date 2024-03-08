@@ -12,14 +12,15 @@ matplotlib-inline==0.1.6
 nltk
 numpy
 pandas
-plotly @ file:///opt/conda/envs/env/conda-bld/plotly_1698259245963/work/packages/python/plotly/dist/plotly-5.18.0.tar.gz
+plotly
+plotly-5.18.0.tar.gz
 prometheus-client==0.19.0
 pyarrow==15.0.0
 python-json-logger==2.0.7
 python-utils==3.8.2
 regex
 safetensors==0.4.2
-scikit-learn @ file:///private/var/folders/c_/qfmhj66j0tn016nkx_th4hxm0000gp/T/abs_2184e3zm58/croot/scikit-learn_1694788538013/work
+scikit-learn 
 scipy==1.12.0
 seaborn==0.13.2
 snorkel==0.9.9
@@ -36,10 +37,10 @@ tensorflow-io-gcs-filesystem==0.35.0
 terminado==0.18.0
 textblob==0.18.0.post0
 tf-keras==2.15.0
-threadpoolctl @ file:///Users/ktietz/demo/mc3/conda-bld/threadpoolctl_1629802263681/work
+threadpoolctl
 tokenizers==0.15.2
 torch==2.2.1
-tqdm @ file:///home/conda/feedstock_root/build_artifacts/tqdm_1691671248568/work
+tqdm 
 transformers==4.38.2
 utils==1.0.2
 vaderSentiment==3.3.2
