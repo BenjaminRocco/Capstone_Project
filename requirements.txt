@@ -1,9 +1,10 @@
+nltk
+numpy
+pickle
+scikit-learn
+scipy
+snorkel
 streamlit
 tensorflow
-numpy
 textblob
-nltk
-scikit-learn
-snorkel
-scipy
 transformers

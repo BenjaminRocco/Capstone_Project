@@ -19,10 +19,17 @@ from nltk.corpus import wordnet as wn
 from nltk.sentiment import SentimentIntensityAnalyzer
 nltk.download('vader_lexicon')
 from transformers import pipeline
+import pickle
 
 # Load the pre-trained model from the .h5 file
 model_path = "model_11_72test.h5" # Best Performing - Currently Set
 model = tf.keras.models.load_model(model_path)
+
+model_filepath = '/Users/ben/Desktop/DSI_GA_Materials/capstone/Capstone_Project_backup/part_01/Code/binary_classification_SVCTVEC.pkl'
+
+# Load the model using pickle
+with open(model_filepath, 'rb') as model_file:
+    loaded__bin_model = pickle.load(model_file)
 
 # Load VADER sentiment analyzer
 vader_analyzer = SentimentIntensityAnalyzer()
@@ -288,6 +295,14 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     filtered_tokens = [word for word in word_tokens if word.lower() not in stop_words]
     filtered_phrase = " ".join(filtered_tokens)
     st.write(f"Phrase with stopwords removed: {filtered_phrase}")
+
+    binary_class_model_score = loaded__bin_model.predict([user_input]).item()
+
+    # Display result based on the binary model prediction - everyone outputting in reverse so 0 is chosen for true return (opinion)
+    if binary_class_model_score == 0:
+        st.write("This abstract/headline coupling came from an opinion section.")
+    else:
+        st.write("This abstract/headline coupling came from a non-opinion section.")
 
     # Make a prediction using the neural net model
     model_score = np.argmax(model.predict(padded_sequence)) / 10
