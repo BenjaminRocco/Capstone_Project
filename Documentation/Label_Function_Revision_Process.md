@@ -2,7 +2,7 @@
 
 How did we continue to develop our labeling functions and fit our sentiment analyzer to the VADER sentiment analyzer? Well, apart from analyzing, using Snorkel’s built in functionality, how label functions were performing on hand-labeled validation set data (documentation here) we utilized Word2Vec, Continuous-Bag-Of-Words, and Skip Gram, three similar but different word encoders to gain valuable insights into the textual information we gathered for analysis. 
 
-# Utilization of Word2Vec, A Friendly Introduction! 
+# Utilization of Word2Vec, A Gentle Introduction! 
 
 What is Word2Vec? Essentially, it is a way of prescribing vector like qualities/quantities to a word within a group of words. What are those fundamental qualities/quantities? Namely, qualitatively they are a magnitude (length) and direction. Quantitatively, the length has a scalar (constant) value while the direction has components pointing to directions spanning the space! Think: x and y in 2D space (cartesian); x,y,z in 3D space (cartesian), and different values in various coordinate systems and non-cartesian spaces beyond the scope of this project! Beyond the theory and in practice, Word2Vec is a popular algorithm that generates word embeddings that can represent words as dense vectors in continuous vector space. These embeddings clearly define semantic and syntactic relationships between words and are used in various natural language processing tasks. There are also algorithms very similar to Word2Vec that serve different purposes. For our project, we utilized these algorithms in order to develop meaningful relationships amongst words that could potentially lead us to forming insightful conclusions regarding biased language. These functions enabled us to change our approach to defining labeling functions in order to decrease the error in performance of our sentiment analyzer and VADER’s sentiment analyzer. In the following passage we detail exactly how we were able to accomplish these feats. 
 
@@ -42,7 +42,7 @@ We may utilize principal component analysis to reduce the dimensionality of thes
 
 ### In Conclusion
 
-The insights we gained from these methods helped further develop label functions in order to close the gap from our sentiment analyzer and VADER’s sentiment analyzer. By gaining valuable information regarding contexts of words contained in passages with greater tendency for bias, we were able to target those words for labeling functions, effectively label abstract/headline pairs perceived as tending towards more bias in nature, and close the margin of error between our homebrewed sentiment analyzer and the professionally designed VADER sentiment analyzer. 
+The insights we gained from these methods helped further develop label functions in order to close the gap between our sentiment analyzer and VADER’s sentiment analyzer. By gaining valuable information regarding contexts of words contained in passages with greater tendency for bias, we were able to target those words for labeling functions, effectively label abstract/headline pairs perceived as tending towards more bias in nature, and close the margin of error between our homebrewed sentiment analyzer and the professionally designed VADER sentiment analyzer. 
 
 
 
