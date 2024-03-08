@@ -282,7 +282,6 @@ def combined_binary_bias_score(x):
 
     return normalized_score
 
-# Function to predict and display outcomes
 def predict_and_display_outcomes(user_input, show_sentiment_scores):
     # Tokenize and pad the input sequence
     tokenizer.fit_on_texts([user_input])
@@ -294,19 +293,19 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     word_tokens = word_tokenize(user_input)
     filtered_tokens = [word for word in word_tokens if word.lower() not in stop_words]
     filtered_phrase = " ".join(filtered_tokens)
-    st.write(f"Phrase with stopwords removed: {filtered_phrase}")
+    st.markdown(f"**Phrase with stopwords removed:**\n*{filtered_phrase}.*")
 
     binary_class_model_score = loaded__bin_model.predict([user_input]).item()
 
     # Display result based on the binary model prediction - everyone outputting in reverse so 0 is chosen for true return (opinion)
     if binary_class_model_score == 0:
-        st.write("This abstract/headline coupling came from an opinion section.")
+        st.markdown("**This abstract/headline coupling came from an opinion section.**")
     else:
-        st.write("This abstract/headline coupling came from a non-opinion section.")
+        st.markdown("**This abstract/headline coupling came from a non-opinion section.**")
 
     # Make a prediction using the neural net model
     model_score = np.argmax(model.predict(padded_sequence)) / 10
-    st.write(f"Neural Net Model Tendency Towards Bias Score: {model_score:.2f}")
+    st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{model_score:.2f}.*")
 
     # Use VADER sentiment analyzer
     vader_score_total = vader_analyzer.polarity_scores(user_input)['compound']
@@ -315,7 +314,7 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     vader_score_neg = vader_analyzer.polarity_scores(user_input)['neg']
 
     # Call the previous function to display outcomes of labeling functions
-    st.subheader("Labeling Function Outcomes:")
+    st.subheader("**Labeling Function Outcomes:**")
     lf_outcomes(user_input, model_score)
 
     combined_score = combined_binary_bias_score(user_input)
@@ -328,126 +327,125 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     elif vader_score_total > 0:
         sent_score *= 1
 
-
     # Display sentiment scores if checkbox is selected
     if show_sentiment_scores:
-        st.header("Sentiment Scores:")
-        st.write(f"Model Sentiment Score:, {sent_score:.4f}")
-        st.write(f"VADER Total Sentiment Score:, {vader_score_total:.4f}")
-        st.write(f"VADER Positive Score: {vader_score_pos:.4f}")
-        st.write(f"VADER Neutral Score: {vader_score_neutral:.4f}")
-        st.write(f"VADER Negative Score: {vader_score_neg:.4f}")
+        st.header("**Sentiment Scores:**")
+        st.markdown(f"**Model Sentiment Score:**\n*{sent_score:.4f}.*")
+        st.markdown(f"**VADER Total Sentiment Score:**\n*{vader_score_total:.4f}.*")
+        st.markdown(f"**VADER Positive Score:**\n*{vader_score_pos:.4f}.*")
+        st.markdown(f"**VADER Neutral Score:**\n*{vader_score_neutral:.4f}.*")
+        st.markdown(f"**VADER Negative Score:**\n*{vader_score_neg:.4f}.*")
 
 # Define a function to display outcomes of labeling functions
 @st.cache_resource()
 def lf_outcomes(user_input, model_score):
     # Labeling Function 1
     lf1_outcome = lf_keyword_my_binary(user_input)
-    st.write(f"LF 1 - Keyword My Binary: Outcome - {lf1_outcome}, Score - {lf1_outcome * weight_lf_keyword_my_binary:.2f}")
+    st.write(f"LF 1 - Keyword My Binary: Outcome - {lf1_outcome}, Score - {lf1_outcome * weight_lf_keyword_my_binary:.2f}.")
 
     # Labeling Function 2
     lf2_outcome = lf_regex_fake_news_binary(user_input)
-    st.write(f"LF 2 - Regex Fake News Binary: Outcome - {lf2_outcome}, Score - {lf2_outcome * weight_lf_regex_fake_news_binary:.2f}")
+    st.write(f"LF 2 - Regex Fake News Binary: Outcome - {lf2_outcome}, Score - {lf2_outcome * weight_lf_regex_fake_news_binary:.2f}.")
 
     # Labeling Function 3
     lf3_outcome = lf_regex_subjective_binary(user_input)
-    st.write(f"LF 3 - Regex Subjective Binary: Outcome - {lf3_outcome}, Score - {lf3_outcome * weight_lf_regex_subjective_binary:.2f}")
+    st.write(f"LF 3 - Regex Subjective Binary: Outcome - {lf3_outcome}, Score - {lf3_outcome * weight_lf_regex_subjective_binary:.2f}.")
 
     # Labeling Function 4
     lf4_outcome = lf_long_combined_text_binary(user_input)
-    st.write(f"LF 4 - Long Combined Text Binary: Outcome - {lf4_outcome}, Score - {lf4_outcome * weight_lf_long_combined_text_binary:.2f}")
+    st.write(f"LF 4 - Long Combined Text Binary: Outcome - {lf4_outcome}, Score - {lf4_outcome * weight_lf_long_combined_text_binary:.2f}.")
 
     # Labeling Function 5
     lf5_outcome = lf_textblob_polarity_binary(user_input)
-    st.write(f"LF 5 - Textblob Polarity Binary: Outcome - {lf5_outcome}, Score - {lf5_outcome * weight_lf_textblob_polarity_binary:.2f}")
+    st.write(f"LF 5 - Textblob Polarity Binary: Outcome - {lf5_outcome}, Score - {lf5_outcome * weight_lf_textblob_polarity_binary:.2f}.")
 
     # Labeling Function 6
     lf6_outcome = lf_textblob_subjectivity_binary(user_input)
-    st.write(f"LF 6 - Textblob Subjective Binary: Outcome - {lf6_outcome}, Score - {lf6_outcome * weight_lf_textblob_subjectivity_binary:.2f}")
+    st.write(f"LF 6 - Textblob Subjective Binary: Outcome - {lf6_outcome}, Score - {lf6_outcome * weight_lf_textblob_subjectivity_binary:.2f}.")
 
     # Labeling Function 7
     lf7_outcome = lf_past_tense_keywords_binary(user_input)
-    st.write(f"LF 7 - Past Tense Keywords Binary: Outcome - {lf7_outcome}, Score - {lf7_outcome * weight_lf_past_tense_keywords_binary:.2f}")
+    st.write(f"LF 7 - Past Tense Keywords Binary: Outcome - {lf7_outcome}, Score - {lf7_outcome * weight_lf_past_tense_keywords_binary:.2f}.")
 
     # Labeling Function 8
     lf8_outcome = lf_present_tense_keywords_binary(user_input)
-    st.write(f"LF 8 - Present Tense Keywords Binary: Outcome - {lf8_outcome}, Score - {lf8_outcome * weight_lf_present_tense_keywords_binary:.2f}")
+    st.write(f"LF 8 - Present Tense Keywords Binary: Outcome - {lf8_outcome}, Score - {lf8_outcome * weight_lf_present_tense_keywords_binary:.2f}.")
 
     # Labeling Function 9
     lf9_outcome = lf_active_voice_keywords_binary(user_input)
-    st.write(f"LF 9 - Active Voice Keywords Binary: Outcome - {lf9_outcome}, Score - {lf9_outcome * weight_lf_active_voice_keywords_binary:.2f}")
+    st.write(f"LF 9 - Active Voice Keywords Binary: Outcome - {lf9_outcome}, Score - {lf9_outcome * weight_lf_active_voice_keywords_binary:.2f}.")
 
     # Labeling Function 10
     lf10_outcome = lf_keyword_maps_binary(user_input)
-    st.write(f"LF 10 - Keyword Maps Binary: Outcome - {lf10_outcome}, Score - {lf10_outcome * weight_lf_keyword_maps_binary:.2f}")
+    st.write(f"LF 10 - Keyword Maps Binary: Outcome - {lf10_outcome}, Score - {lf10_outcome * weight_lf_keyword_maps_binary:.2f}.")
 
     # Labeling Function 11
     lf11_outcome = lf_keyword_county_binary(user_input)
-    st.write(f"LF 11 - Keyword County Binary: Outcome - {lf11_outcome}, Score - {lf11_outcome * weight_lf_keyword_county_binary:.2f}")
+    st.write(f"LF 11 - Keyword County Binary: Outcome - {lf11_outcome}, Score - {lf11_outcome * weight_lf_keyword_county_binary:.2f}.")
 
     # Labeling Function 12
     lf12_outcome = lf_keyword_election_binary(user_input)
-    st.write(f"LF 12 - Keyword Election Binary: Outcome - {lf12_outcome}, Score - {lf12_outcome * weight_lf_keyword_election_binary:.2f}")
+    st.write(f"LF 12 - Keyword Election Binary: Outcome - {lf12_outcome}, Score - {lf12_outcome * weight_lf_keyword_election_binary:.2f}.")
 
     # Labeling Function 13
     lf13_outcome = lf_keyword_coronavirus_binary(user_input)
-    st.write(f"LF 13 - Keyword Coronavirus Binary: Outcome - {lf13_outcome}, Score - {lf13_outcome * weight_lf_keyword_coronavirus_binary:.2f}")
+    st.write(f"LF 13 - Keyword Coronavirus Binary: Outcome - {lf13_outcome}, Score - {lf13_outcome * weight_lf_keyword_coronavirus_binary:.2f}.")
 
     # Labeling Function 14
     lf14_outcome = lf_keyword_case_binary(user_input)
-    st.write(f"LF 14 - Keyword Case Binary: Outcome - {lf14_outcome}, Score - {lf14_outcome * weight_lf_keyword_case_binary:.2f}")
+    st.write(f"LF 14 - Keyword Case Binary: Outcome - {lf14_outcome}, Score - {lf14_outcome * weight_lf_keyword_case_binary:.2f}.")
 
     # Labeling Function 15
     lf15_outcome = lf_keyword_risk_binary(user_input)
-    st.write(f"LF 15 - Keyword Risk Binary: Outcome - {lf15_outcome}, Score - {lf15_outcome * weight_lf_keyword_risk_binary:.2f}")
+    st.write(f"LF 15 - Keyword Risk Binary: Outcome - {lf15_outcome}, Score - {lf15_outcome * weight_lf_keyword_risk_binary:.2f}.")
 
     # Labeling Function 16
     lf16_outcome = lf_keyword_cases_binary(user_input)
-    st.write(f"LF 16 - Keyword Cases Binary: Outcome - {lf16_outcome}, Score - {lf16_outcome * weight_lf_keyword_cases_binary:.2f}")
+    st.write(f"LF 16 - Keyword Cases Binary: Outcome - {lf16_outcome}, Score - {lf16_outcome * weight_lf_keyword_cases_binary:.2f}.")
 
     # Labeling Function 17
     lf17_outcome = lf_keyword_covid_binary(user_input)
-    st.write(f"LF 17 - Keyword COVID Binary: Outcome - {lf17_outcome}, Score - {lf17_outcome * weight_lf_keyword_covid_binary:.2f}")
+    st.write(f"LF 17 - Keyword COVID Binary: Outcome - {lf17_outcome}, Score - {lf17_outcome * weight_lf_keyword_covid_binary:.2f}.")
 
     # Labeling Function 18
     lf18_outcome = lf_keyword_latest_binary(user_input)
-    st.write(f"LF 18 - Keyword Latest Binary: Outcome - {lf18_outcome}, Score - {lf18_outcome * weight_lf_keyword_latest_binary:.2f}")
+    st.write(f"LF 18 - Keyword Latest Binary: Outcome - {lf18_outcome}, Score - {lf18_outcome * weight_lf_keyword_latest_binary:.2f}.")
 
     # Labeling Function 19
     lf19_outcome = lf_keyword_trump_binary(user_input)
-    st.write(f"LF 19 - Keyword Trump Binary: Outcome - {lf19_outcome}, Score - {lf19_outcome * weight_lf_keyword_trump_binary:.2f}")
+    st.write(f"LF 19 - Keyword Trump Binary: Outcome - {lf19_outcome}, Score - {lf19_outcome * weight_lf_keyword_trump_binary:.2f}.")
 
     # Labeling Function 20
     lf20_outcome = lf_keyword_ukraine_binary(user_input)
-    st.write(f"LF 20 - Keyword Ukraine Binary: Outcome - {lf20_outcome}, Score - {lf20_outcome * weight_lf_keyword_ukraine_binary:.2f}")
+    st.write(f"LF 20 - Keyword Ukraine Binary: Outcome - {lf20_outcome}, Score - {lf20_outcome * weight_lf_keyword_ukraine_binary:.2f}.")
 
     # Labeling Function 21
     lf21_outcome = lf_keyword_russia_binary(user_input)
-    st.write(f"LF 21 - Keyword Russia Binary: Outcome - {lf21_outcome}, Score - {lf21_outcome * weight_lf_keyword_russia_binary:.2f}")
+    st.write(f"LF 21 - Keyword Russia Binary: Outcome - {lf21_outcome}, Score - {lf21_outcome * weight_lf_keyword_russia_binary:.2f}.")
 
     # Labeling Function 22
     lf22_outcome = lf_keyword_war_binary(user_input)
-    st.write(f"LF 22 - Keyword War Binary: Outcome - {lf22_outcome}, Score - {lf22_outcome * weight_lf_keyword_war_binary:.2f}")
+    st.write(f"LF 22 - Keyword War Binary: Outcome - {lf22_outcome}, Score - {lf22_outcome * weight_lf_keyword_war_binary:.2f}.")
 
     # Labeling Function 23
     lf23_outcome = lf_keyword_reminiscent_binary(user_input)
-    st.write(f"LF 23 - Keyword Reminiscent Binary: Outcome - {lf23_outcome}, Score - {lf23_outcome * weight_lf_keyword_reminiscent_binary:.2f}")
+    st.write(f"LF 23 - Keyword Reminiscent Binary: Outcome - {lf23_outcome}, Score - {lf23_outcome * weight_lf_keyword_reminiscent_binary:.2f}.")
 
     # Labeling Function 24
     lf24_outcome = lf_keyword_removes_binary(user_input)
-    st.write(f"LF 24 - Keyword Removes Binary: Outcome - {lf24_outcome}, Score - {lf24_outcome * weight_lf_keyword_removes_binary:.2f}")
+    st.write(f"LF 24 - Keyword Removes Binary: Outcome - {lf24_outcome}, Score - {lf24_outcome * weight_lf_keyword_removes_binary:.2f}.")
 
     # Labeling Function 25
     lf25_outcome = lf_keyword_proceed_binary(user_input)
-    st.write(f"LF 25 - Keyword Proceed Binary: Outcome - {lf25_outcome}, Score - {lf25_outcome * weight_lf_keyword_proceed_binary:.2f}")
+    st.write(f"LF 25 - Keyword Proceed Binary: Outcome - {lf25_outcome}, Score - {lf25_outcome * weight_lf_keyword_proceed_binary:.2f}.")
 
     # Labeling Function 26
     lf26_outcome = lf_keyword_ponder_binary(user_input)
-    st.write(f"LF 26 - Keyword Ponder Binary: Outcome - {lf26_outcome}, Score - {lf26_outcome * weight_lf_keyword_ponder_binary:.2f}")
+    st.write(f"LF 26 - Keyword Ponder Binary: Outcome - {lf26_outcome}, Score - {lf26_outcome * weight_lf_keyword_ponder_binary:.2f}.")
 
     # Combined Binary Bias Score
     combined_score = combined_binary_bias_score(user_input)
-    st.write(f"Labeling Function Tendency Towards Bias Score: {combined_score:.2f}")
+    st.write(f"Labeling Function Tendency Towards Bias Score: {combined_score:.2f}.")
 
 # Streamlit app
 def main():
