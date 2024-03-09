@@ -37,9 +37,9 @@ Text document that includes libraries and packages within `streamlit_script.py` 
 
 ### We present novel methods for determining bias within abstracts/headlines of online articles, label these articles based on relative bias levels, and harness these labels to train a neural network model capable of upscaling this labeling process. Next, we create a custom sentiment analyzer and validate its performance by comparing it to a Valence Aware Dictionary and sEntiment Reasoner (VADER sentiment analyzer) built by a team of professionals. Our processing and analyzing tools are packaged together and available through our Streamlit App titled: Tendency Towards Bias Scoring App. This app runs using our Bias Estimator and Analyzer of Sentiment Tendency (BEAST) Engine. The results of this project will provide the groundwork for future efforts towards understanding bias and sentiment analysis in language processing frameworks. 
 
-### Link Here: 
+### Link Here: https://beastengine.streamlit.app
 
-## 2. Dataset(s)
+## 2. Data
 - Data will consist of article abstracts and headlines from The New York Times (NYT). 
 - These will be imported and converted to `Pandas` DataFrames and edited for content. 
 - Cleaning and transformation steps will include utilizing Regular Expressions to ensure that the data conform to standards outlined in greater detail within the project notebook. 

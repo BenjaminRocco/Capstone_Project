@@ -1,6 +1,6 @@
+keras
 nltk
 numpy
-pickle
 scikit-learn
 scipy
 snorkel
