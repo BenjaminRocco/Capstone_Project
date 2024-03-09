@@ -35,7 +35,7 @@ Text document that includes libraries and packages within `streamlit_script.py` 
 - Efficacy will be evaluated based on performance, error metrics, sentiment analysis and recommendations and guidance will be offered. 
 - Interested parties in this research include political party affiliates, media outlets, psychologistics and sociologists, and others intrigued by the phenomenon of media influence upon societal thought processes. 
 
-### We present novel methods for determining bias within abstracts/headlines of online articles, label these articles based on relative bias levels, and harness these labels to train a neural network model capable of upscaling this labeling process. Next, we create a custom sentiment analyzer and validate the performance of this analyzer by comparing it to a Valence Aware Dictionary and sEntiment Reasoner (VADER sentiment analyzer) built by a team of professionals. Our processing and analyzing tools are packaged together and available over our Streamlit App titled: Tendency Towards Bias Scoring App. This app runs using our Bias Estimator and Analyzer of Sentiment Tendency (BEAST) Engine. The results of this project will provide the groundwork for future efforts towards understanding bias and sentiment analysis in language processing frameworks. 
+### We present novel methods for determining bias within abstracts/headlines of online articles, label these articles based on relative bias levels, and harness these labels to train a neural network model capable of upscaling this labeling process. Next, we create a custom sentiment analyzer and validate its performance by comparing it to a Valence Aware Dictionary and sEntiment Reasoner (VADER sentiment analyzer) built by a team of professionals. Our processing and analyzing tools are packaged together and available through our Streamlit App titled: Tendency Towards Bias Scoring App. This app runs using our Bias Estimator and Analyzer of Sentiment Tendency (BEAST) Engine. The results of this project will provide the groundwork for future efforts towards understanding bias and sentiment analysis in language processing frameworks. 
 
 ### Link Here: 
 
@@ -53,11 +53,11 @@ Part I.
 - Output features for classification model: (1 for `Opinion` and 0 for `other`, all other section names).
 Model efficacy is evaluated within notebook (see end of `CleaningEDA_ClassModeling.ipynb` for chosen model implemented in Streamlit app). 
   
-  Part II. 
+Part II. 
   
 - Bias scores typical of these modeling projects will be utilized to evaluate the abstracts and headlines for the `Opinion` articles (Cohen Kappa Score generated with help from insights gained from Snorkel labeling functions). After label functions are assessed using Snorkel's built-in metrics, these labeling functions are included in a weighted linear function for labeling abstract/headline concatenated pairs for further neural network modeling. Please see documents for more detailed explanation. 
   
-  Part III.
+Part III.
 - Model with Long Short Term Memory (LSTM) categorical neural network model, derive sentiment analyzer and compare it with professional VADER sentiment analyzer for performance. Word2Vec, Continuous-Bag-Of-Words, and Skip Gram as well as Cosine Similarity are utilized to gain further insights regarding abstract/headline couplings. When we find words that are commonly associated within biased frameworks, we choose these words for labeling functions and go back to Part II for another iteration of labeling functions including these words, survey the Snorkel metrics to see how these performed, and include these words in a new labeling function for another iteration. This outlines the entire development pipeline process for the project. 
 
 ## 4. Noteworthy Observations
