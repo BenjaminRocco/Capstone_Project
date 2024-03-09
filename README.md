@@ -2,10 +2,16 @@
 
 ##### For Necessary Libraries and Packages please see `required_libraries_packages.txt` file.
 
-## Table Of Contents
+## Problem Statement
+- How can bias and sentiment be identified from abstracts and headlines of news articles by utilizing natural language processing, neural networks, and sentiment analyzers? 
+- Efficacy will be evaluated based on performance, error metrics, sentiment analysis and recommendations and guidance will be offered. 
+- Interested parties in this research include political party affiliates, media outlets, psychologistics and sociologists, and others intrigued by the phenomenon of media influence upon societal thought processes. 
 
-### Overview
-`README.md`
+### We present novel methods for determining bias within abstracts/headlines of online articles, label these articles based on relative bias levels, and harness these labels to train a neural network model capable of upscaling this labeling process. Next, we create a custom sentiment analyzer and validate its performance by comparing it to a Valence Aware Dictionary and sEntiment Reasoner (VADER sentiment analyzer) built by a team of professionals. Our processing and analyzing tools are packaged together and available through our Streamlit App titled: Tendency Towards Bias Scoring App. This app runs using our Bias Estimator and Analyzer of Sentiment Tendency (BEAST) Engine. The results of this project will provide the groundwork for future efforts towards understanding bias and sentiment analysis in language processing frameworks. 
+
+### Link Here: https://beastengine.streamlit.app
+
+# Table Of Contents
 
 ### Code
 `part_01`
@@ -30,22 +36,13 @@ Contains all required packages and libraries to run project.
 ### requirements.txt
 Text document that includes libraries and packages within `streamlit_script.py` - necessary for all streamlit app deployments. 
 
-## 1. Problem Statement
-- How can bias and sentiment be identified from abstracts and headlines of news articles by utilizing natural language processing, neural networks, and sentiment analyzers? 
-- Efficacy will be evaluated based on performance, error metrics, sentiment analysis and recommendations and guidance will be offered. 
-- Interested parties in this research include political party affiliates, media outlets, psychologistics and sociologists, and others intrigued by the phenomenon of media influence upon societal thought processes. 
-
-### We present novel methods for determining bias within abstracts/headlines of online articles, label these articles based on relative bias levels, and harness these labels to train a neural network model capable of upscaling this labeling process. Next, we create a custom sentiment analyzer and validate its performance by comparing it to a Valence Aware Dictionary and sEntiment Reasoner (VADER sentiment analyzer) built by a team of professionals. Our processing and analyzing tools are packaged together and available through our Streamlit App titled: Tendency Towards Bias Scoring App. This app runs using our Bias Estimator and Analyzer of Sentiment Tendency (BEAST) Engine. The results of this project will provide the groundwork for future efforts towards understanding bias and sentiment analysis in language processing frameworks. 
-
-### Link Here: https://beastengine.streamlit.app
-
-## 2. Data
+## 1. Data
 - Data will consist of article abstracts and headlines from The New York Times (NYT). 
 - These will be imported and converted to `Pandas` DataFrames and edited for content. 
 - Cleaning and transformation steps will include utilizing Regular Expressions to ensure that the data conform to standards outlined in greater detail within the project notebook. 
 - The results of this analysis will serve as input for basic `NLP` models prior to serving as input for more advanced neural network models.
 
-## 3. Modeling
+## 2. Modeling
 
 Part I.
 - First, a binary classification model will identify whether or not the abstracts and articles came from an `Opinion` piece or other (1 for `Opinion` and 0 for `other`, all other section names).
@@ -60,13 +57,13 @@ Part II.
 Part III.
 - Model with Long Short Term Memory (LSTM) categorical neural network model, derive sentiment analyzer and compare it with professional VADER sentiment analyzer for performance. Word2Vec, Continuous-Bag-Of-Words, and Skip Gram as well as Cosine Similarity are utilized to gain further insights regarding abstract/headline couplings. When we find words that are commonly associated within biased frameworks, we choose these words for labeling functions and go back to Part II for another iteration of labeling functions including these words, survey the Snorkel metrics to see how these performed, and include these words in a new labeling function for another iteration. This outlines the entire development pipeline process for the project. 
 
-## 4. Noteworthy Observations
+## 3. Noteworthy Observations
 - The benefits of `NLP` models are that they are not computationally expensive compared with their `NN` counterparts. The drawbacks are that they might not contain as many insights as the latter more complex models.
 - The benefits of `NN` models are that they have more hyperparameters and customizability compared with their `NLP` counterparts. The drawbacks are that they may be limited by resources such as hardware and computation times necessary to run optimization steps exhaustively for optimal performance, as was the case for this particular study. 
 - Assumptions to confirm / requisite steps to take with independent variables for models:
   - Text data must be cleaned, parsed, and transformed into vectors.
 
-## 5. Resources / References
+## 4. Resources / References
 - `API` Documentation from `NYT`: https://developer.nytimes.com/apis
 - Code for webscraping adapted from fellow coursemate's group project, with their permission this code was included in the pipeline for this project.
 - Snorkel documentation for Cohen Kappa Score labeling: https://www.snorkel.org
