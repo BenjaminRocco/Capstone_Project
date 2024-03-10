@@ -36,11 +36,12 @@ from keras.models import load_model
 # Load the pre-trained model from the .h5 file
 # model_path = "model_11_72test.h5" # Best Performing - Currently Set
 # model = load_model(model_path, custom_objects={'Embedding': keras.layers.Embedding}, compile=False)
-model_path = "model_11.keras" # Best Performing - Currently Set
-model = tf.keras.models.load_model(model_path)
+# model_path = "model_11.keras" # Best Performing - Currently Set
+# model = tf.keras.models.load_model(model_path)
 # config = model.get_config()
 # st.write(f"{config}")
-
+model_path = "/Users/ben/Desktop/DSI_GA_Materials/capstone/Capstone_Project_backup/model_11_serial"
+model = tf.keras.models.load_model(model_path)
 # Insert your relative path here
 model_filepath = 'binary_classification_SVCTVEC.pkl'
 
