@@ -4,6 +4,16 @@ import numpy as np
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from textblob import TextBlob
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Embedding, Bidirectional, LSTM, Dense, Dropout, BatchNormalization
+from tensorflow.keras.callbacks import EarlyStopping
+from tensorflow.keras.regularizers import l2
+from tensorflow.keras.optimizers import RMSprop
+from tensorflow.keras.optimizers import Adam
+from tensorflow.keras.utils import to_categorical
+
 import re
 import nltk
 from nltk.corpus import stopwords
@@ -26,8 +36,10 @@ from keras.models import load_model
 # Load the pre-trained model from the .h5 file
 # model_path = "model_11_72test.h5" # Best Performing - Currently Set
 # model = load_model(model_path, custom_objects={'Embedding': keras.layers.Embedding}, compile=False)
-model_path = "/Users/ben/Desktop/DSI_GA_Materials/capstone/Capstone_Project_backup/model_11.keras" # Best Performing - Currently Set
+model_path = "model_11.keras" # Best Performing - Currently Set
 model = tf.keras.models.load_model(model_path)
+# config = model.get_config()
+# st.write(f"{config}")
 
 # Insert your relative path here
 model_filepath = '/Users/ben/Desktop/DSI_GA_Materials/capstone/Capstone_Project_backup/part_01/Code/binary_classification_SVCTVEC.pkl'
