@@ -6,17 +6,13 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from textblob import TextBlob
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Embedding, Bidirectional, LSTM, Dense, Dropout, BatchNormalization
-from tensorflow.keras.callbacks import EarlyStopping
-from tensorflow.keras.regularizers import l2
-from tensorflow.keras.optimizers import RMSprop
-from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.utils import to_categorical
 
 import re
 import nltk
 from nltk.corpus import stopwords
+nltk.download('stopwords')
+
+
 from nltk.tokenize import word_tokenize
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from snorkel.labeling import labeling_function
@@ -40,7 +36,7 @@ from keras.models import load_model
 # model = tf.keras.models.load_model(model_path)
 # config = model.get_config()
 # st.write(f"{config}")
-model_path = "/Users/ben/Desktop/DSI_GA_Materials/capstone/Capstone_Project_backup/model_11_serial"
+model_path = "model_11_serial"
 model = tf.keras.models.load_model(model_path)
 # Insert your relative path here
 model_filepath = 'binary_classification_SVCTVEC.pkl'
