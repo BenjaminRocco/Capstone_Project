@@ -27,8 +27,11 @@
 ### streamlit_script.py
 Final iteration of Streamlit application script - Tendency Towards Bias Scoring App - Initial Deployment Version.
 
-### model_11_72test.h5
-Long Short Term Memory (LSTM) Neural Network (NN) model.
+### model_11_serial
+Long Short Term Memory (LSTM) Neural Network (NN) model for Streamlit App
+
+### old_models
+LSTM NN Models that are not compatible with Streamlit App
 
 ### required_libraries_packages.txt
 Contains all required packages and libraries to run project.

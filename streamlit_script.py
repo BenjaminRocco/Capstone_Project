@@ -37,7 +37,7 @@ from keras.models import load_model
 # model = tf.keras.models.load_model(model_path)
 # config = model.get_config()
 # st.write(f"{config}")
-# model_path = "model_11_serial"
+# model_path = "model_11_serial" ## Use this for Streamlit
 # model = tf.keras.models.load_model(model_path)
 # Insert your relative path here
 # model_filepath = 'binary_classification_SVCTVEC.pkl'
@@ -49,7 +49,7 @@ from keras.models import load_model
 # # Use TFSMLayer to load the SavedModel as an inference-only layer
 # inference_layer = keras.layers.TFSMLayer(model, call_endpoint='serving_default')
 # Load your model using TFSMLayer
-model_path = "model_11_serial"
+model_path = "model_11_serial" # Use this locally
 inference_layer = keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
 
 # Create a new Sequential model using the functional API
@@ -67,6 +67,7 @@ tvec_filepath = 'binary_classification_TVEC_nongrid.pkl'
 svc_filepath = 'binary_classification_SVC_nongrid.pkl'
 
 # Load the TfidfVectorizer using pickle
+
 with open(tvec_filepath, 'rb') as tvec_file:
     loaded_tvec = pickle.load(tvec_file)
 
@@ -354,7 +355,7 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
 
     st.subheader("**Neural Network Outcomes:**")
 
-    # # Print raw model predictions before applying argmax
+    # # Print raw model predictions before applying argmax Use locally
     raw_model_predictions = model.predict(padded_sequence)
     # st.write(f"Raw Model Predictions: {raw_model_predictions}")
 
@@ -365,6 +366,22 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     # Find the index corresponding to the maximum probability
     predicted_class_index = np.argmax(predicted_probabilities) / 10
     st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
+
+    # # Print raw model predictions before applying argmax # Use this locally
+    # raw_model_predictions = model.predict(padded_sequence)
+    # # st.write(f"Raw Model Predictions: {raw_model_predictions}")
+
+    # # # Extract predicted class probabilities from the dictionary
+    # predicted_probabilities = raw_model_predictions['dense_14'][0]
+    # # st.write(f"Predicted Probabilities for Each Class: {predicted_probabilities}")
+
+    # # Find the index corresponding to the maximum probability
+    # predicted_class_index = np.argmax(predicted_probabilities) / 10
+    # st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
+
+    # Make a prediction using the neural net model Use this Online
+    # predicted_class_index = np.argmax(model.predict(padded_sequence)) / 10
+    # st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
 
     if 0.0 <= predicted_class_index <= 0.20:
         st.write("**Bias Tier:**\n*None to Slight Bias*")
