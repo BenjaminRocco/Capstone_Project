@@ -42,7 +42,7 @@ model = tf.keras.models.load_model(model_path)
 # st.write(f"{config}")
 
 # Insert your relative path here
-model_filepath = '/Users/ben/Desktop/DSI_GA_Materials/capstone/Capstone_Project_backup/part_01/Code/binary_classification_SVCTVEC.pkl'
+model_filepath = 'binary_classification_SVCTVEC.pkl'
 
 # Load the model using pickle
 with open(model_filepath, 'rb') as model_file:
