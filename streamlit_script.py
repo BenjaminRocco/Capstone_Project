@@ -26,7 +26,6 @@ import random
 from nltk.corpus import wordnet as wn
 from nltk.sentiment import SentimentIntensityAnalyzer
 nltk.download('vader_lexicon')
-from transformers import pipeline
 import pickle
 import keras
 from keras.models import load_model
@@ -38,10 +37,30 @@ from keras.models import load_model
 # model = tf.keras.models.load_model(model_path)
 # config = model.get_config()
 # st.write(f"{config}")
-model_path = "model_11_serial"
-model = tf.keras.models.load_model(model_path)
+# model_path = "model_11_serial"
+# model = tf.keras.models.load_model(model_path)
 # Insert your relative path here
-model_filepath = 'binary_classification_SVCTVEC.pkl'
+# model_filepath = 'binary_classification_SVCTVEC.pkl'
+
+# Load your model using the appropriate method (load_model or other)
+# model_path = "/Users/ben/Desktop/DSI_GA_Materials/capstone/Capstone_Project_backup/model_11_serial"
+# model = tf.keras.models.load_model(model_path)
+
+# # Use TFSMLayer to load the SavedModel as an inference-only layer
+# inference_layer = keras.layers.TFSMLayer(model, call_endpoint='serving_default')
+# Load your model using TFSMLayer
+model_path = "model_11_serial"
+inference_layer = keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
+
+# Create a new Sequential model using the functional API
+@st.cache_resource
+def load_model():
+    model = keras.Sequential([
+        keras.Input(shape=(78,)),  # Assuming your input shape is (None, 78)
+        inference_layer,  # Add the loaded model as a layer
+    ])
+    return model
+model = load_model()
 
 # Insert your relative paths here
 tvec_filepath = 'binary_classification_TVEC_nongrid.pkl'
@@ -56,8 +75,8 @@ with open(svc_filepath, 'rb') as svc_file:
     loaded_svc_model = pickle.load(svc_file)
 
 # Load the model using pickle
-with open(model_filepath, 'rb') as model_file:
-    loaded__bin_model = pickle.load(model_file)
+# with open(model_filepath, 'rb') as model_file:
+#     loaded__bin_model = pickle.load(model_file)
 
 # Load VADER sentiment analyzer
 vader_analyzer = SentimentIntensityAnalyzer()
@@ -325,7 +344,7 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
 
     binary_class_model_score_v2 = loaded_svc_model.predict(loaded_tvec.transform([filtered_phrase])).item()
 
-    binary_class_model_score = loaded__bin_model.predict([filtered_phrase]).item()
+    # binary_class_model_score = loaded__bin_model.predict([filtered_phrase]).item()
 
     # Display result based on the binary model prediction - everyone outputting in reverse so 0 is chosen for true return (opinion)
     if binary_class_model_score_v2 == 0:
