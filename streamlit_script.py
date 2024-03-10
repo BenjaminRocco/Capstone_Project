@@ -11,7 +11,9 @@ import re
 import nltk
 from nltk.corpus import stopwords
 nltk.download('stopwords')
-
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('omw-1.4')
 
 from nltk.tokenize import word_tokenize
 from sklearn.preprocessing import StandardScaler, LabelEncoder
@@ -40,6 +42,18 @@ model_path = "model_11_serial"
 model = tf.keras.models.load_model(model_path)
 # Insert your relative path here
 model_filepath = 'binary_classification_SVCTVEC.pkl'
+
+# Insert your relative paths here
+tvec_filepath = 'binary_classification_TVEC_nongrid.pkl'
+svc_filepath = 'binary_classification_SVC_nongrid.pkl'
+
+# Load the TfidfVectorizer using pickle
+with open(tvec_filepath, 'rb') as tvec_file:
+    loaded_tvec = pickle.load(tvec_file)
+
+# Load the SVC model using pickle
+with open(svc_filepath, 'rb') as svc_file:
+    loaded_svc_model = pickle.load(svc_file)
 
 # Load the model using pickle
 with open(model_filepath, 'rb') as model_file:
@@ -309,10 +323,12 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     filtered_phrase = " ".join(filtered_tokens)
     st.markdown(f"**Phrase with stopwords removed:**\n*{filtered_phrase}*")
 
-    binary_class_model_score = loaded__bin_model.predict([user_input]).item()
+    binary_class_model_score_v2 = loaded_svc_model.predict(loaded_tvec.transform([filtered_phrase])).item()
+
+    binary_class_model_score = loaded__bin_model.predict([filtered_phrase]).item()
 
     # Display result based on the binary model prediction - everyone outputting in reverse so 0 is chosen for true return (opinion)
-    if binary_class_model_score == 0:
+    if binary_class_model_score_v2 == 0:
         st.markdown("**This abstract/headline coupling came from an opinion section.**")
     else:
         st.markdown("**This abstract/headline coupling came from a non-opinion section.**")
