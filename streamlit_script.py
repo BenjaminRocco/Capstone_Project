@@ -354,19 +354,27 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
 
     st.subheader("**Neural Network Outcomes:**")
 
-    # Make a prediction using the neural net model
-    model_score = np.argmax(model.predict(padded_sequence)) / 10
-    st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{model_score:.2f}.*")
+    # # Print raw model predictions before applying argmax
+    raw_model_predictions = model.predict(padded_sequence)
+    # st.write(f"Raw Model Predictions: {raw_model_predictions}")
 
-    if 0.0 <= model_score <= 0.20:
+    # # Extract predicted class probabilities from the dictionary
+    predicted_probabilities = raw_model_predictions['dense_14'][0]
+    # st.write(f"Predicted Probabilities for Each Class: {predicted_probabilities}")
+
+    # Find the index corresponding to the maximum probability
+    predicted_class_index = np.argmax(predicted_probabilities) / 10
+    st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
+
+    if 0.0 <= predicted_class_index <= 0.20:
         st.write("**Bias Tier:**\n*None to Slight Bias*")
-    elif 0.21 <= model_score <= 0.40:
+    elif 0.21 <= predicted_class_index <= 0.40:
         st.write("**Bias Tier:**\n*Fair Bias*")
-    elif 0.41 <= model_score <= 0.60:
+    elif 0.41 <= predicted_class_index <= 0.60:
         st.write("**Bias Tier:**\n*Moderate Bias*")
-    elif 0.61 <= model_score <= 0.80:
+    elif 0.61 <= predicted_class_index <= 0.80:
         st.write("**Bias Tier:**\n*Substantial Bias*")
-    elif 0.81 <= model_score <= 1.00:
+    elif 0.81 <= predicted_class_index <= 1.00:
         st.write("**Bias Tier:**\n*Perfectly Bias*")
 
     # Use VADER sentiment analyzer
@@ -377,12 +385,12 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
 
     # Call the previous function to display outcomes of labeling functions
     st.subheader("**Labeling Function Outcomes:**")
-    lf_outcomes(user_input, model_score)
+    lf_outcomes(user_input, predicted_class_index)
 
     combined_score = combined_binary_bias_score(user_input)
     # This sentiment score combines the predicted model score and combined train score, where train tends more towards bias and predicted errs on less bias
     # Their sum is a total that captures sentiment: closer to positive 1 indicates more positive sentiment whereas closer to negative 1 indicates more negative sentiment.
-    sent_score = combined_score + model_score
+    sent_score = combined_score + predicted_class_index
 
     if vader_score_total < 0:
         sent_score *= -1
