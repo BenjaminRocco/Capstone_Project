@@ -32,9 +32,6 @@ import pickle
 import keras
 from keras.models import load_model
 
-# model_path = "model_11_serial" ## Use this for Streamlit
-# model = tf.keras.models.load_model(model_path)
-
 model_path = "model_11_serial" # Use this locally
 inference_layer = keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
 
@@ -94,31 +91,31 @@ keywords = [
     "removes", "proceed", "ponder"
 ]
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_my_binary(x):
     """Return 1 if any of the misleading_bias_terms is present, else return 0."""
     presence = any(term in str(x).lower() for term in misleading_bias_terms)
     return 1 if presence else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_regex_fake_news_binary(x):
     """Return 1 if any of the bias_words is present, else return 0."""
     presence = any(re.search(fr"\b{word}\b", str(x), flags=re.I) is not None for word in bias_words)
     return 1 if presence else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_regex_subjective_binary(x):
     """Return 1 if any of the subj_words is present, else return 0."""
     presence = any(re.search(fr"\b{word}\b", str(x), flags=re.I) is not None for word in subj_words)
     return 1 if presence else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_long_combined_text_binary(text_list):
     """Return 1 if the combined length is greater than 376, else return 0."""
     length = len(" ".join(str(text_list)).split())
     return 1 if length > 133 else 0 
 
-@labeling_function()
+@st.cache_resource
 def lf_textblob_polarity_binary(x):
     """
     We use a third-party sentiment classification model, TextBlob.
@@ -128,7 +125,7 @@ def lf_textblob_polarity_binary(x):
     polarity = TextBlob(str(x)).sentiment.polarity
     return 1 if polarity < 0 else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_textblob_subjectivity_binary(x):
     """
     We use a third-party sentiment classification model, TextBlob.
@@ -145,19 +142,19 @@ def lf_textblob_subjectivity_binary(x):
     # Return 1 if high subjectivity, 0 otherwise
     return 1 if subjectivity > 0.5 else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_past_tense_keywords_binary(x):
     """Return BIAS if any of the subj_words is present, else ABSTAIN."""
     presence = any(re.search(fr"\b{word}\b", str(x), flags=re.I) is not None for word in past_tense_keywords)
     return 1 if presence else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_present_tense_keywords_binary(x):
     """Return BIAS if any of the subj_words is present, else ABSTAIN."""
     presence = any(re.search(fr"\b{word}\b", str(x), flags=re.I) is not None for word in present_tense_keywords)
     return 1 if presence else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_active_voice_keywords_binary(x):
     """Return BIAS if any of the subj_words is present, else ABSTAIN."""
     presence = any(re.search(fr"\b{word}\b", str(x), flags=re.I) is not None for word in active_voice_keywords)
@@ -172,71 +169,71 @@ keywords = [
 
 keywords_pattern = "|".join(fr"\b{re.escape(keyword)}\b" for keyword in keywords)
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_maps_binary(x):
     return 1 if re.search(fr"\b{re.escape('maps')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_county_binary(x):
     return 1 if re.search(fr"\b{re.escape('county')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_election_binary(x):
     return 1 if re.search(fr"\b{re.escape('election')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_coronavirus_binary(x):
     return 1 if re.search(fr"\b{re.escape('coronavirus')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_case_binary(x):
     return 1 if re.search(fr"\b{re.escape('case')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_risk_binary(x):
     return 1 if re.search(fr"\b{re.escape('risk')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_cases_binary(x):
     return 1 if re.search(fr"\b{re.escape('cases')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_covid_binary(x):
     return 1 if re.search(fr"\b{re.escape('covid')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_latest_binary(x):
     return 1 if re.search(fr"\b{re.escape('latest')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_trump_binary(x):
     return 1 if re.search(fr"\b{re.escape('trump')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_ukraine_binary(x):
     return 1 if re.search(fr"\b{re.escape('ukraine')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_russia_binary(x):
     return 1 if re.search(fr"\b{re.escape('russia')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_war_binary(x):
     return 1 if re.search(fr"\b{re.escape('war')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_reminiscent_binary(x):
     return 1 if re.search(fr"\b{re.escape('reminiscent')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_removes_binary(x):
     return 1 if re.search(fr"\b{re.escape('removes')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_proceed_binary(x):
     return 1 if re.search(fr"\b{re.escape('proceed')}\b", str(x), flags=re.I) else 0
 
-@labeling_function()
+@st.cache_resource
 def lf_keyword_ponder_binary(x):
     return 1 if re.search(fr"\b{re.escape('ponder')}\b", str(x), flags=re.I) else 0
 
@@ -316,6 +313,29 @@ def combined_binary_bias_score(x):
 
     return normalized_score
 
+@st.cache_data(max_entries=1)
+def process_user_input(user_input):
+    # Tokenize and pad the input sequence
+    tokenizer.fit_on_texts([user_input])
+    sequence = tokenizer.texts_to_sequences([user_input])
+    padded_sequence = pad_sequences(sequence, maxlen=max_length)
+
+    # Display phrase with stopwords removed
+    stop_words = set(stopwords.words('english'))
+    word_tokens = word_tokenize(user_input)
+    filtered_tokens = [word for word in word_tokens if word.lower() not in stop_words]
+    filtered_phrase = " ".join(filtered_tokens)
+
+    # Fetch data from _db_connection here, and then clean it up
+    binary_class_model_score_v2 = loaded_svc_model.predict(loaded_tvec.transform([filtered_phrase])).item()
+
+    return binary_class_model_score_v2
+
+
+process_user_input.clear()
+# Clear all cached entries for this function.
+
+@st.cache_data(max_entries=1)
 def predict_and_display_outcomes(user_input, show_sentiment_scores):
     # Tokenize and pad the input sequence
     tokenizer.fit_on_texts([user_input])
@@ -329,9 +349,11 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     filtered_phrase = " ".join(filtered_tokens)
     st.markdown(f"**Phrase with stopwords removed:**\n*{filtered_phrase}*")
 
-    binary_class_model_score_v2 = loaded_svc_model.predict(loaded_tvec.transform([filtered_phrase])).item()
+    # binary_class_model_score_v2 = loaded_svc_model.predict(loaded_tvec.transform([filtered_phrase])).item()
 
     # binary_class_model_score = loaded__bin_model.predict([filtered_phrase]).item()
+    binary_class_model_score_v2 = process_user_input(user_input)
+
 
     # Display result based on the binary model prediction - everyone outputting in reverse so 0 is chosen for true return (opinion)
     if binary_class_model_score_v2 == 0:
@@ -352,22 +374,6 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     # Find the index corresponding to the maximum probability
     predicted_class_index = np.argmax(predicted_probabilities) / 10
     st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
-
-    # # Print raw model predictions before applying argmax # Use this locally
-    # raw_model_predictions = model.predict(padded_sequence)
-    # # st.write(f"Raw Model Predictions: {raw_model_predictions}")
-
-    # # # Extract predicted class probabilities from the dictionary
-    # predicted_probabilities = raw_model_predictions['dense_14'][0]
-    # # st.write(f"Predicted Probabilities for Each Class: {predicted_probabilities}")
-
-    # # Find the index corresponding to the maximum probability
-    # predicted_class_index = np.argmax(predicted_probabilities) / 10
-    # st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
-
-    # Make a prediction using the neural net model Use this Online
-    # predicted_class_index = np.argmax(model.predict(padded_sequence)) / 10
-    # st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
 
     if 0.0 <= predicted_class_index <= 0.20:
         st.write("**Bias Tier:**\n*None to Slight Bias*")
@@ -410,6 +416,8 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
         st.markdown(f"**VADER Negative Score:**\n*{vader_score_neg:.4f}.*")
 
     st.subheader("**All results generated by Bias Estimator and Analyzer of Sentiment Tendency (BEAST) Engine**")
+
+predict_and_display_outcomes.clear()
 
 
 # Define a function to display outcomes of labeling functions

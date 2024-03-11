@@ -58,7 +58,7 @@ Part II.
 - Bias scores typical of these modeling projects will be utilized to evaluate the abstracts and headlines for the `Opinion` articles (Cohen Kappa Score generated with help from insights gained from Snorkel labeling functions). After label functions are assessed using Snorkel's built-in metrics, these labeling functions are included in a weighted linear function for labeling abstract/headline concatenated pairs for further neural network modeling. Please see documents for more detailed explanation. 
   
 Part III.
-- Model with Long Short Term Memory (LSTM) categorical neural network model, derive sentiment analyzer and compare it with professional VADER sentiment analyzer for performance. Word2Vec, Continuous-Bag-Of-Words, and Skip Gram as well as Cosine Similarity are utilized to gain further insights regarding abstract/headline couplings. When we find words that are commonly associated within biased frameworks, we choose these words for labeling functions and go back to Part II for another iteration of labeling functions including these words, survey the Snorkel metrics to see how these performed, and include these words in a new labeling function for another iteration. This outlines the entire development pipeline process for the project. 
+- Model with Long Short Term Memory (LSTM) categorical neural network model, derive sentiment analyzer and compare it with professional VADER sentiment analyzer for performance. Word2Vec variants: Continuous-Bag-Of-Words and and Skip Gram, as well as Cosine Similarity, are utilized to gain further insights regarding abstract/headline couplings. When we find words that are commonly associated within biased frameworks, we choose these words for labeling functions and go back to Part II for another iteration of labeling functions including these words, survey the Snorkel metrics to see how these performed, and include these words in a new labeling function for another iteration. This outlines the entire development pipeline process for the project. 
 
 ## 3. Noteworthy Observations
 - The benefits of `NLP` models are that they are not computationally expensive compared with their `NN` counterparts. The drawbacks are that they might not contain as many insights as the latter more complex models.
@@ -76,3 +76,4 @@ Part III.
 - CBOW/Skip Gram: https://towardsdatascience.com/understanding-feature-engineering-part-4-deep-learning-methods-for-text-data-96c44370bbfa
 - CBOW/SKip Gram: https://medium.com/@dube.aditya8/word2vec-skip-gram-cbow-b5e802b00390
 - KDE Plot Documentation: https://seaborn.pydata.org/generated/seaborn.kdeplot.html
+- Quantum Neural Networks: https://openreview.net/pdf?id=ZLKaNvYFfjd
