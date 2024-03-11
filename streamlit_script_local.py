@@ -1,4 +1,4 @@
-# STREAMLIT APP VERSION ONLY
+# RUN THIS VERSION LOCALLY ONLY
 
 import streamlit as st
 import tensorflow as tf
@@ -32,23 +32,21 @@ import pickle
 import keras
 from keras.models import load_model
 
-model_path = "model_11_serial" ## Use this for Streamlit
-model = tf.keras.models.load_model(model_path)
-# Insert your relative path here
-# model_filepath = 'binary_classification_SVCTVEC.pkl'
+# model_path = "model_11_serial" ## Use this for Streamlit
+# model = tf.keras.models.load_model(model_path)
 
-# model_path = "model_11_serial" # Use this locally
-# inference_layer = keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
+model_path = "model_11_serial" # Use this locally
+inference_layer = keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
 
-# # Create a new Sequential model using the functional API
-# @st.cache_resource
-# def load_model():
-#     model = keras.Sequential([
-#         keras.Input(shape=(78,)),  # Assuming your input shape is (None, 78)
-#         inference_layer,  # Add the loaded model as a layer
-#     ])
-#     return model
-# model = load_model()
+# Create a new Sequential model using the functional API
+@st.cache_resource
+def load_model():
+    model = keras.Sequential([
+        keras.Input(shape=(78,)),  # Assuming your input shape is (None, 78)
+        inference_layer,  # Add the loaded model as a layer
+    ])
+    return model
+model = load_model()
 
 # Insert your relative paths here
 tvec_filepath = 'binary_classification_TVEC_nongrid.pkl'
@@ -343,17 +341,17 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
 
     st.subheader("**Neural Network Outcomes:**")
 
-    # # # Print raw model predictions before applying argmax Use locally
-    # raw_model_predictions = model.predict(padded_sequence)
-    # # st.write(f"Raw Model Predictions: {raw_model_predictions}")
+    # # Print raw model predictions before applying argmax Use locally
+    raw_model_predictions = model.predict(padded_sequence)
+    # st.write(f"Raw Model Predictions: {raw_model_predictions}")
 
-    # # # Extract predicted class probabilities from the dictionary
-    # predicted_probabilities = raw_model_predictions['dense_14'][0]
-    # # st.write(f"Predicted Probabilities for Each Class: {predicted_probabilities}")
+    # # Extract predicted class probabilities from the dictionary
+    predicted_probabilities = raw_model_predictions['dense_14'][0]
+    # st.write(f"Predicted Probabilities for Each Class: {predicted_probabilities}")
 
-    # # Find the index corresponding to the maximum probability
-    # predicted_class_index = np.argmax(predicted_probabilities) / 10
-    # st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
+    # Find the index corresponding to the maximum probability
+    predicted_class_index = np.argmax(predicted_probabilities) / 10
+    st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
 
     # # Print raw model predictions before applying argmax # Use this locally
     # raw_model_predictions = model.predict(padded_sequence)
@@ -368,8 +366,8 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     # st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
 
     # Make a prediction using the neural net model Use this Online
-    predicted_class_index = np.argmax(model.predict(padded_sequence)) / 10
-    st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
+    # predicted_class_index = np.argmax(model.predict(padded_sequence)) / 10
+    # st.markdown(f"**Neural Net Model Tendency Towards Bias Score:**\n*{predicted_class_index:.2f}.*")
 
     if 0.0 <= predicted_class_index <= 0.20:
         st.write("**Bias Tier:**\n*None to Slight Bias*")
@@ -552,6 +550,7 @@ def main():
         if user_input:
             # Call the predict_and_display_outcomes function
             predict_and_display_outcomes(user_input, show_sentiment_scores)
+
     # Button to clear caches and restart the app - MUST CLEAR CACHE AND RESTART AFTER EVERY RUN
     if st.button("Clear Caches and Restart"):
         # Use the Streamlit magic command to clear caches and restart
