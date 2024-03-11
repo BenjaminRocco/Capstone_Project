@@ -315,16 +315,14 @@ def combined_binary_bias_score(x):
 
 @st.cache_data(max_entries=1)
 def process_user_input(user_input):
-    # Tokenize and pad the input sequence
-    tokenizer.fit_on_texts([user_input])
-    sequence = tokenizer.texts_to_sequences([user_input])
-    padded_sequence = pad_sequences(sequence, maxlen=max_length)
-
+    
     # Display phrase with stopwords removed
     stop_words = set(stopwords.words('english'))
     word_tokens = word_tokenize(user_input)
     filtered_tokens = [word for word in word_tokens if word.lower() not in stop_words]
     filtered_phrase = " ".join(filtered_tokens)
+    st.markdown(f"**Phrase with stopwords removed:**\n*{filtered_phrase}*")
+
 
     # Fetch data from _db_connection here, and then clean it up
     binary_class_model_score_v2 = loaded_svc_model.predict(loaded_tvec.transform([filtered_phrase])).item()
@@ -342,16 +340,7 @@ def predict_and_display_outcomes(user_input, show_sentiment_scores):
     sequence = tokenizer.texts_to_sequences([user_input])
     padded_sequence = pad_sequences(sequence, maxlen=max_length)
 
-    # Display phrase with stopwords removed
-    stop_words = set(stopwords.words('english'))
-    word_tokens = word_tokenize(user_input)
-    filtered_tokens = [word for word in word_tokens if word.lower() not in stop_words]
-    filtered_phrase = " ".join(filtered_tokens)
-    st.markdown(f"**Phrase with stopwords removed:**\n*{filtered_phrase}*")
-
-    # binary_class_model_score_v2 = loaded_svc_model.predict(loaded_tvec.transform([filtered_phrase])).item()
-
-    # binary_class_model_score = loaded__bin_model.predict([filtered_phrase]).item()
+    # Binary Classification model call
     binary_class_model_score_v2 = process_user_input(user_input)
 
 
