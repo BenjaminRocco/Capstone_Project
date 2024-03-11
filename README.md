@@ -1,6 +1,6 @@
 # Capstone Project: Tendency Towards Bias Application and Sentiment Analyzer
 
-##### For Necessary Libraries and Packages please see `required_libraries_packages.txt` file.
+##### Necessary Libraries and Packages contained within `required_libraries_packages.txt` file.
 
 ## Problem Statement
 - How can bias and sentiment be identified from abstracts and headlines of news articles by utilizing natural language processing, neural networks, and sentiment analyzers? 
@@ -13,32 +13,12 @@
 
 # Table Of Contents
 
-### Code
-`part_01`
+## See `table_of_contents.md` for Detailed Table of Contents
 
-`part_02`
-
-`part_03`
-
-### Data
-`Data`
-
-### Documents 
-`Documentation`
-
-### streamlit_script.py
-Final iteration of Streamlit application script - Tendency Towards Bias Scoring App - Initial Deployment Version.
-
-### model_11_serial
-Long Short Term Memory (LSTM) Neural Network (NN) model for Streamlit App
-
-### old_models
-LSTM NN Models that are not compatible with Streamlit App
-
-### required_libraries_packages.txt
+### `required_libraries_packages.txt`
 Contains all required packages and libraries to run project.
 
-### requirements.txt
+### `requirements.txt`
 Text document that includes libraries and packages within `streamlit_script.py` - necessary for all streamlit app deployments. 
 
 ## 1. Data
@@ -57,10 +37,10 @@ Model efficacy is evaluated within notebook (see end of `CleaningEDA_ClassModeli
   
 Part II. 
   
-- Bias scores typical of these modeling projects will be utilized to evaluate the abstracts and headlines for the `Opinion` articles (Cohen Kappa Score generated with help from insights gained from Snorkel labeling functions). After label functions are assessed using Snorkel's built-in metrics, these labeling functions are included in a weighted linear function for labeling abstract/headline concatenated pairs for further neural network modeling. Please see documents for more detailed explanation. 
+- Bias scores typical of these modeling projects will be utilized to evaluate the abstracts and headlines for the `Opinion` articles (Cohen Kappa Score generated with help from insights gained from Snorkel labeling functions). After label functions are assessed using Snorkel's built-in metrics, these labeling functions are included in a weighted linear function for labeling abstract/headline concatenated pairs for further neural network modeling. See `Label_Function_Revision_Process.md`, `Label_Functions_Explanation.md`, `Label_Voters_Analogy.md` for general audiences and `Labeling_Functions_Technical.md` for technical audiences. 
   
 Part III.
-- Model with Long Short Term Memory (LSTM) categorical neural network model, derive sentiment analyzer and compare it with professional VADER sentiment analyzer for performance. Word2Vec variants: Continuous-Bag-Of-Words and and Skip Gram, as well as Cosine Similarity, are utilized to gain further insights regarding abstract/headline couplings. When we find words that are commonly associated within biased frameworks, we choose these words for labeling functions and go back to Part II for another iteration of labeling functions including these words, survey the Snorkel metrics to see how these performed, and include these words in a new labeling function for another iteration. This outlines the entire development pipeline process for the project. 
+- Model with Long Short Term Memory (LSTM) categorical neural network model, derive sentiment analyzer and compare it with professional VADER sentiment analyzer for performance. Word2Vec variants: Continuous-Bag-Of-Words and and Skip-Gram, as well as Cosine Similarity, are utilized to gain further insights regarding abstract/headline couplings. When we find words that are commonly associated within biased frameworks, we choose these words for labeling functions and go back to Part II for another iteration of labeling functions including these words, survey the Snorkel metrics to see how these performed, and include these words in a new labeling function for another iteration. This outlines the entire development pipeline process for the project. 
 
 ## 3. Noteworthy Observations
 - The benefits of `NLP` models are that they are not computationally expensive compared with their `NN` counterparts. The drawbacks are that they might not contain as many insights as the latter more complex models.
