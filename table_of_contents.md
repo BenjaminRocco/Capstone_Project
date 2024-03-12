@@ -92,6 +92,7 @@
 ## Other Files
 - table_of_contents.md
 - Capstone_Presentation.pdf
+- model_11_72test.h5 - Original model for usage within `statistical_analysis.ipynb` notebook for all analysis.
 
-**11 directories, 65 files**
+**12 directories, 66 files**
 
