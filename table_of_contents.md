@@ -77,7 +77,7 @@
 - Word_Cloud_Visuals.ipynb - Notebook for generating Word Cloud visualizations of hand-labeled Snorkel data
 - cbow_weights.h5 - CBOW weights file
 - model_structure_skip.png - Flowchart of Skip Grams neural network (similar to CBOW)
-- statistical_analysis.ipynb - Technical comparisons between neural network model and labeling function results, BEAST, and VADER analyzers
+- statistical_analysis.ipynb - Technical comparisons between neural network model and labeling function results, BEAST, and VADER analyzers. Legacy notebook for viewing purposes only, as there are unresolved version issues with keras and tensorflow embedding layers. 
 - word2vec-skipgram.ipynb - Skip Grams notebook - Technical usage for revising labeling functions
 - word2vec_cbow.ipynb - CBOW notebook - Technical usage for revising labeling functions
 
