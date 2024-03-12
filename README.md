@@ -1,4 +1,4 @@
-# Capstone Project: Tendency Towards Bias Application and Sentiment Analyzer
+# Bias Estimator and Analyzer of Sentiment Tendency (BEAST) Engine: An Online News Article Bias Evaluating Application
 
 ##### Necessary Libraries and Packages contained within `required_libraries_packages.txt` file.
 
