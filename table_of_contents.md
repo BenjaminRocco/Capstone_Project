@@ -64,7 +64,7 @@
 - Code
   - CleaningEDA_ClassModeling.ipynb - Binary Classification models for Opinion vs. non-Opinion sections
   - Data_Collection_NYT.ipynb - Webscraping code from NYT (requires user credentials)
-  - utilities.py
+  - utilities.py - Webscraping notebook runs with this file
 - __pycache__
   - utilities.cpython-310.pyc
 
