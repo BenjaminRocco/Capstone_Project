@@ -11,6 +11,8 @@
 
 ### Link Here: https://beastengine.streamlit.app
 
+#### App Instructions: Copy and Paste an Abstract section and Headline from an article. BEAST engine removes filler words and returns a bias score from a neural network model, low magnitude, and a bias score from a labeling function , high magnitude. Click "Show Sentiment Scores" under the text box to see sentiment scores from BEAST and VADER analyzers based on the feelings evoked from the abstract/headline coupling! Afterwards, click "Clear caches and restart," at the bottom of the page, wait until loading finishes, delete the text string and select "Stop" at the top righthand corner of the page to stop the app from running and then the user may submit another abstract and headline! It's that simple!
+
 # Table Of Contents
 
 ## See `table_of_contents.md` for Detailed Table of Contents
