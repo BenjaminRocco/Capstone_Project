@@ -20,4 +20,4 @@ This is not unique to this project. In fact, we see labeling functions every day
 
 ### More Information
 
-A more detailed explanation regarding the Cohen Kappa Score and composition of these labeling functions into a linear equation to return scores may be found in the document `Labeling_Functions_Technical.md`. 
+A more detailed explanation regarding the Cohen Kappa Score and composition of these labeling functions into a linear equation to return scores may be found in the `Labeling_Functions_Technical.md` document. 

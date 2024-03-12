@@ -1,6 +1,6 @@
 # Revising Our Labeling Function and Fitting to `VADER` Sentiment Analyzer
 
-How did we continue to develop our labeling functions and fit our sentiment analyzer to the `VADER` sentiment analyzer? Well, apart from analyzing, using Snorkel’s built in functionality, how label functions were performing on hand-labeled validation set data (documentation here) we utilized `Word2Vec`, `Continuous-Bag-Of-Words`, and `Skip Gram`, three similar but different word encoders to gain valuable insights into the textual information we gathered for analysis. 
+How did we continue to develop our labeling functions and fit our sentiment analyzer to the `VADER` sentiment analyzer? Well, apart from analyzing, using Snorkel’s built-in metric functionality to evaluate how label functions were performing on hand-labeled validation set data (documentation in `Labeling_Functions_Technical.md`), we utilized `Word2Vec`, `Continuous-Bag-Of-Words`, and `Skip Gram`, three similar but different word encoders to gain valuable insights into the textual information we gathered for analysis. 
 
 # Utilization of `Word2Vec`, A Gentle Introduction! 
 
@@ -14,7 +14,7 @@ There is a process to all of these algorithms, and the process is as follows:
 
 2. In Continuous-Bag-Of-Words (CBOW), our objective is to predict a target word given we have the surrounding words within a specific radius of words from our target. We form training samples by roving over the text corpus in segmented lengths and forming (context, target) pairs. Think of it as a partition over our text phrases, the union of which is the entire corpus! 
 
-3. Next comes the encoding step. We convert our context words and target words into one-hot-encoded vectors. This means that each vector will have the size of its vocabulary, with all zeros aside from a one at the index corresponding to the word’s position in the vocabulary. Think of these as unit vectors pointing in a unique direction in our space! If we had only two words, we would have [0,1], [1,0], three: we would have [1, 0, 0], [0, 1, 0], [0,0,1], etc.
+3. Next comes the encoding step. We convert our context words and target words into one-hot-encoded vectors. This means that each vector will have the size of its vocabulary, with all zeros aside from a one at the index corresponding to the word’s position in the vocabulary. Think of these as unit vectors pointing in a unique direction in our space! If we had only two words, we would have $[0,1],\,[1,0]$, three: we would have $[1, 0, 0],\,[0, 1, 0],\,[0,0,1]$, etc.
 
 4. Now we build our model! We created a neural network model with an embedding layer, hidden layers, and an output layer. The embedding layer mapped the one-hot-encoded context words to dense vectors and the hidden layer performed transformations, where the output layer predicted the target word. 
 

@@ -20,10 +20,6 @@ nltk.download('omw-1.4')
 from nltk.tokenize import word_tokenize
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from snorkel.labeling import labeling_function
-from snorkel.labeling.model import LabelModel
-from snorkel.labeling import PandasLFApplier
-from snorkel.augmentation import transformation_function
-from snorkel.augmentation import ApplyOnePolicy, PandasTFApplier
 import random
 from nltk.corpus import wordnet as wn
 from nltk.sentiment import SentimentIntensityAnalyzer
@@ -39,22 +35,6 @@ def load_model():
     return model
 model = load_model()
 
-# Insert your relative path here
-# model_filepath = 'binary_classification_SVCTVEC.pkl'
-
-# model_path = "model_11_serial" # Use this locally
-# inference_layer = keras.layers.TFSMLayer(model_path, call_endpoint='serving_default')
-
-# # Create a new Sequential model using the functional API
-# @st.cache_resource
-# def load_model():
-#     model = keras.Sequential([
-#         keras.Input(shape=(78,)),  # Assuming your input shape is (None, 78)
-#         inference_layer,  # Add the loaded model as a layer
-#     ])
-#     return model
-# model = load_model()
-
 # Insert your relative paths here
 tvec_filepath = 'binary_classification_TVEC_nongrid.pkl'
 svc_filepath = 'binary_classification_SVC_nongrid.pkl'
@@ -67,10 +47,6 @@ with open(tvec_filepath, 'rb') as tvec_file:
 # Load the SVC model using pickle
 with open(svc_filepath, 'rb') as svc_file:
     loaded_svc_model = pickle.load(svc_file)
-
-# Load the model using pickle
-# with open(model_filepath, 'rb') as model_file:
-#     loaded__bin_model = pickle.load(model_file)
 
 # Load VADER sentiment analyzer
 vader_analyzer = SentimentIntensityAnalyzer()

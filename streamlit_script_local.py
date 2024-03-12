@@ -58,10 +58,6 @@ with open(tvec_filepath, 'rb') as tvec_file:
 with open(svc_filepath, 'rb') as svc_file:
     loaded_svc_model = pickle.load(svc_file)
 
-# Load the model using pickle
-# with open(model_filepath, 'rb') as model_file:
-#     loaded__bin_model = pickle.load(model_file)
-
 # Load VADER sentiment analyzer
 vader_analyzer = SentimentIntensityAnalyzer()
 
