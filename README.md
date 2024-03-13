@@ -57,7 +57,7 @@ Part III.
 - Pew Center Article on Bias: https://www.pewresearch.org/internet/2017/10/19/the-future-of-truth-and-misinformation-online
 - VADER Documentation: https://vadersentiment.readthedocs.io
 - Kaggle GPU Documentation: https://www.kaggle.com/code/dansbecker/running-kaggle-kernels-with-a-gpu
-- CBOW/Skip Gram Guide: https://towardsdatascience.com/understanding-feature-engineering-part-4-deep-learning-methods-for-text-data-96c44370bbfa
-- CBOW/Skip Gram Guide: https://medium.com/@dube.aditya8/word2vec-skip-gram-cbow-b5e802b00390
+- Skip Gram Guide - Skip Gram notebook adapted from this source : https://towardsdatascience.com/understanding-feature-engineering-part-4-deep-learning-methods-for-text-data-96c44370bbfa
+- CBOW/Skip Gram Guide - CBOW notebook adapted from this source: https://medium.com/@dube.aditya8/word2vec-skip-gram-cbow-b5e802b00390
 - KDE Plot Documentation: https://seaborn.pydata.org/generated/seaborn.kdeplot.html
 - Quantum Neural Networks: https://openreview.net/pdf?id=ZLKaNvYFfjd
