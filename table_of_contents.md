@@ -78,8 +78,8 @@
 - cbow_weights.h5 - CBOW weights file
 - model_structure_skip.png - Flowchart of Skip Grams neural network (similar to CBOW)
 - statistical_analysis.ipynb - Technical comparisons between neural network model and labeling function results, BEAST, and VADER analyzers. Legacy notebook for viewing purposes only, as there are unresolved version issues with keras and tensorflow embedding layers. Results are at the end of the notebook beyond the long output.
-- word2vec-skipgram.ipynb - Skip Grams notebook - Technical usage for revising labeling functions
-- word2vec_cbow.ipynb - CBOW notebook - Technical usage for revising labeling functions
+- word2vec-skipgram.ipynb - Skip Grams notebook - Technical usage for revising labeling functions - source attributed within references section
+- word2vec_cbow.ipynb - CBOW notebook - Technical usage for revising labeling functions - source attributed within references section
 
 ## Text Files
 - required_libraries_packages.txt
