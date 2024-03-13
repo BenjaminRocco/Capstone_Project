@@ -24,7 +24,7 @@ Contains all required packages and libraries to run project.
 Text document that includes libraries and packages within `streamlit_script.py` - necessary for all streamlit app deployments. 
 
 ## 1. Data
-- Data will consist of article abstracts and headlines from The New York Times (NYT) webscraped by utilizing NYT API. 
+- Data will consist of article abstracts and headlines from The New York Times (NYT) web scraped by utilizing NYT API. 
 - These will be imported and converted to `Pandas` DataFrames and edited for content. 
 - Cleaning and transformation steps will include utilizing Regular Expressions to ensure that the data conform to standards outlined in greater detail within the project notebook. 
 - The results of this analysis will serve as input for basic `NLP` models prior to serving as input for more advanced neural network models.
@@ -52,7 +52,7 @@ Part III.
 
 ## 4. Resources / References
 - `API` Documentation from `NYT`: https://developer.nytimes.com/apis
-- Code for webscraping adapted from fellow coursemate's group project, with their permission this code was included in the pipeline for this project.
+- Code for web scraping adapted from fellow coursemate's group project, with their permission this code was included in the pipeline for this project.
 - Snorkel documentation for Cohen Kappa Score labeling: https://www.snorkel.org
 - Pew Center Article on Bias: https://www.pewresearch.org/internet/2017/10/19/the-future-of-truth-and-misinformation-online
 - VADER Documentation: https://vadersentiment.readthedocs.io
