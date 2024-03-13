@@ -23,7 +23,8 @@
 - Label_Voters_Analogy.md - Imaginative analogy of labeling functions as voters in a US electoral college system
 - Labeling_Functions_Technical.md - Technical explanation of the Snorkel labeling process and evaluation metrics
 - Sentiment_Analysis_Portion.md - Intended for all viewers. A brief explanation regarding the role of sentiment analysis within the project. Less technical viewers may be direct to `Summary_Findings.md` file for information regarding results while technical audiences may refer to `statistical_analysis.ipynb` notebook for more rigorous approach. 
-- Summary_Findings.md - Intended for all viewers. General audiences may find this particularly satisfying while technical audiences may refer to `statistical_analysis.ipynb` notebook for deeper analysis. 
+- Summary_Findings.md - Intended for all viewers. General audiences may find this particularly satisfying while technical audiences may refer to `statistical_analysis.ipynb` notebook for deeper analysis.
+- largescalerun.rtf - Output from `Statistical_Analysis.ipynb` lambda function on large dataset for reproducing results for future iterations. 
 
 ## README.md
 
